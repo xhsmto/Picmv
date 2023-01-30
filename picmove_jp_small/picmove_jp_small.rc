@@ -1,0 +1,445 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+// Generated Help ID header file
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "resource.hm"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 日本語 (日本) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+#pragma code_page(932)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 17, 1\r\n"
+    "#pragma code_page(932)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\picmove_jp_small.rc2""  // Microsoft Visual C++ 以外のツールで編集されたリソース\r\n"
+    "#include ""l.jpn\\afxres.rc""          // 標準のコンポーネント\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\picmove.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PICMOVEOPTION_DIALOG DIALOG 0, 0, 303, 304
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "オプション"
+FONT 9, "MS UI Gothic"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,193,282,50,14
+    PUSHBUTTON      "キャンセル",IDCANCEL,249,282,50,14
+    CONTROL         "Slider1",IDC_SLIDER_DETECT_TIME,"msctls_trackbar32",TBS_NOTICKS | WS_TABSTOP,105,15,142,15
+    CONTROL         "Slider2",IDC_SLIDER_PICBAR_TIME,"msctls_trackbar32",TBS_NOTICKS | WS_TABSTOP,72,54,79,15
+    CONTROL         "Slider3",IDC_SLIDER_GL_TIME,"msctls_trackbar32",TBS_NOTICKS | WS_TABSTOP,214,55,79,16
+    CONTROL         "進捗用サムネイル画像をバイリニア補間する",IDC_CHECK_BILINEAR,"Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,12,76,143,10
+    CONTROL         "フライングサムネイルを表示する",IDC_CHECK_GLPICTURE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,159,76,104,10
+    EDITTEXT        IDC_EDIT_EXTENSIONS,54,100,82,12,ES_AUTOHSCROLL
+    CONTROL         "Slider4",IDC_SLIDER_JPEG_Q,"msctls_trackbar32",TBS_NOTICKS | WS_TABSTOP,72,153,79,15
+    CONTROL         "Slider5",IDC_SLIDER_THUMB_JPEG_Q,"msctls_trackbar32",TBS_NOTICKS | WS_TABSTOP,214,152,79,15
+    EDITTEXT        IDC_EDIT_SERIAL_CHAR,60,190,20,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_SERIAL_COLUMN,105,190,25,12,ES_AUTOHSCROLL
+    CONTROL         "Spin2",IDC_SPIN_SERIAL_COLUMN,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS | UDS_NOTHOUSANDS,130,190,9,12
+    CONTROL         "大文字に変換",IDC_RADIO_EX_UPPER,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,15,219,57,10
+    CONTROL         "小文字に変換",IDC_RADIO_EX_LOWER,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,80,219,57,10
+    CONTROL         "大小の変換はしない",IDC_RADIO_EX_NOCHANGE,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,145,219,75,10
+    RTEXT           "検出間隔",IDC_STATIC,25,20,37,9
+    RTEXT           "3Dオブジェクト\n更新間隔",IDC_STATIC,162,57,48,17
+    RTEXT           "画像処理系機能による出力",IDC_STATIC,17,155,52,16
+    RTEXT           "サムネイル\nJPEG出力",IDC_STATIC,171,153,39,15
+    LTEXT           "短い(1秒)",IDC_STATIC,70,20,29,8
+    LTEXT           "長い(5秒)",IDC_STATIC,250,20,29,8
+    RTEXT           "サムネイル画像の更新間隔",IDC_STATIC,18,55,51,18
+    LTEXT           "ファイル拡張子",IDC_STATIC,11,102,50,8
+    GROUPBOX        "「シリアルナンバを付加」設定時の書式とオプション",IDC_STATIC,10,180,285,25
+    LTEXT           "区切り文字列",IDC_STATIC,15,190,41,8
+    LTEXT           "桁数",IDC_STATIC,85,190,15,8
+    GROUPBOX        "入力(拡張子は「,」で区切って記述)",IDC_STATIC,5,90,295,39
+    GROUPBOX        "JPEG生成時の品質設定",IDC_STATIC,10,142,285,34
+    GROUPBOX        "コピー処理進捗",IDC_STATIC,5,38,295,51
+    GROUPBOX        "出力",IDC_STATIC,5,131,295,119
+    GROUPBOX        "メモリカード自動検出",IDC_STATIC,5,7,295,28
+    GROUPBOX        "拡張子の大文字・小文字変換設定",IDC_STATIC,10,209,285,23
+    CONTROL         "スマートコピー(推奨 : 重複時ファイル内容同一ならコピーをスキップ)",IDC_CHECK_SMARTREPLACE,
+                    "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,11,236,207,9
+    GROUPBOX        "Picgl との連携",IDC_STATIC,5,251,295,26
+    CONTROL         "Picgl と連携する",IDC_CHECK_PICGL_SUPPORT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,261,64,10
+    LTEXT           "Picgl.exe の\n所在場所",IDC_STATIC,75,257,35,15
+    EDITTEXT        IDC_EDIT_PICGL_DIR,113,258,155,15,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "...",IDC_BUTTON_PICGL_DIR,271,259,15,14
+    CONTROL         "非重複でもシリアルナンバ1を付加する",IDC_CHECK_ALWAYSSN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,155,190,127,10
+    CONTROL         "メモリカードの\\DCIMフォルダ以外からもコピーする",IDC_CHECK_OTHERTHANDCIM,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,116,150,10
+    LTEXT           "ビデオファイル拡張子",IDC_STATIC,146,101,57,8
+    EDITTEXT        IDC_EDIT_EXTENSIONS_VIDEO,207,99,87,13,ES_AUTOHSCROLL
+END
+
+IDD_PICMOVE_DIALOG DIALOGEX 0, 0, 383, 343
+STYLE DS_SETFONT | DS_3DLOOK | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_ACCEPTFILES | WS_EX_APPWINDOW
+CAPTION "Picmv"
+FONT 9, "MS UI Gothic", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "終了(&X)",IDOK,265,2,48,14
+    DEFPUSHBUTTON   "実行(&C)",IDC_BUTTON_EXEC,250,324,65,14,BS_TOP
+    PUSHBUTTON      "設定保存(&S)",IDC_BUTTON_SAVE,55,324,48,14
+    CONTROL         "実行後に終了",IDC_CHECK_AUTOQUIT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,240,30,55,10
+    PUSHBUTTON      "中止",IDC_BUTTON_STOP,200,324,48,14
+    CONTROL         "シリアルナンバを付加",IDC_RADIO_ADD_SERIAL,"Button",BS_AUTORADIOBUTTON | WS_GROUP,28,227,80,10
+    CONTROL         "コピーしない",IDC_RADIO_NOCOPY,"Button",BS_AUTORADIOBUTTON,123,227,50,10
+    CONTROL         "上書き(非推奨)",IDC_RADIO_OVERWRITE,"Button",BS_AUTORADIOBUTTON,183,227,60,10
+    EDITTEXT        IDC_EDIT_INDIR,20,84,225,15,ES_AUTOHSCROLL
+    CONTROL         "元ファイルを削除",IDC_CHECK_DELETEOK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,103,66,10
+    CONTROL         "メモリカードをコピー後にイジェクト",IDC_CHECK_EJECT,"Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,80,103,130,10
+    EDITTEXT        IDC_EDIT_OUTDIR,88,119,197,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_NAMING,71,149,240,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_THUMB_DIR,78,185,207,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_THUMBNAMING,78,199,207,13,ES_AUTOHSCROLL
+    CONTROL         "オリエンテーション属性による画像回転",IDC_CHECK_ORIENTATION,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,242,128,10
+    CONTROL         "自動コントラスト調整",IDC_CHECK_AUTOCONTRAST,"Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_DISABLED | WS_TABSTOP,155,239,76,10
+    EDITTEXT        IDC_EDIT_THUMBWIDTH,122,171,18,12,ES_AUTOHSCROLL
+    CONTROL         "Progress1",IDC_PROGRESS1,"msctls_progress32",PBS_SMOOTH | NOT WS_VISIBLE | WS_BORDER,257,240,36,9
+    LTEXT           "出力先ディレクトリ命名法",-1,10,122,74,8,0,0,0x8066ffff
+    LTEXT           "出力先ディレクトリ\n命名法",-1,15,185,50,15
+    LTEXT           "",IDC_STATIC_PROGRESS_TEXT,50,269,265,49
+    CONTROL         "サムネイルを作成",IDC_CHECK_THUMBNAIL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,173,68,10
+    LTEXT           "ピクセル",-1,186,174,21,8
+    GROUPBOX        "ファイル入力元",-1,5,48,310,68,0,WS_EX_TRANSPARENT
+    CONTROL         "",IDC_PICTURE_BOX,"Static",SS_BLACKFRAME | SS_NOTIFY,318,0,66,343
+    LTEXT           "ファイル命名法",-1,10,150,44,8
+    GROUPBOX        "サムネイル出力",-1,10,162,301,54
+    LTEXT           "ファイル命名法",-1,15,203,46,8
+    CONTROL         "",IDC_PICBAR,"Static",SS_BLACKFRAME,5,254,310,14,WS_EX_STATICEDGE
+    GROUPBOX        "ファイル名重複時の処理",-1,10,218,301,23
+    CONTROL         "メモリカードディレクトリ自動認識",IDC_RADIO_AUTO_DETECT,"Button",BS_AUTORADIOBUTTON | WS_GROUP,10,58,101,10
+    CONTROL         "手動で設定する(配下ディレクトリから常に収集「,」区切りで複数記述可能)",IDC_RADIO_MANUAL_DETECT,
+                    "Button",BS_AUTORADIOBUTTON,10,73,260,10
+    EDITTEXT        IDC_EDIT_AUTO_INDIR,179,57,91,13,ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY
+    LTEXT           "",IDC_STATIC_PROGRESS_TEXT2,5,298,37,21
+    PUSHBUTTON      "イジェクト",IDC_BUTTON_EJECT,275,56,35,15
+    PUSHBUTTON      "追加...",IDC_BUTTON_REFER_INDIR,280,86,30,14
+    CONTROL         "",IDC_GL,"Static",SS_BLACKFRAME | SS_NOTIFY,0,0,235,46
+    PUSHBUTTON      "...",IDC_BUTTON_REFER_OUTDIR,290,119,12,14
+    PUSHBUTTON      "...",IDC_BUTTON_REFER_THUMBDIR,290,185,12,14
+    PUSHBUTTON      "?",IDC_BUTTON_HELP_ALL,240,2,10,14
+    PUSHBUTTON      "クリア",IDC_BUTTON_CLEAR,250,86,30,14
+    PUSHBUTTON      "オプション...",IDC_BUTTON_OPTION,5,324,48,14
+    CONTROL         "処理内容事前確認",IDC_CHECK_CONFIRM,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,240,20,73,10
+    CONTROL         "",IDC_STATIC_DIGITAL,"Static",SS_BLACKFRAME,5,268,40,28,WS_EX_STATICEDGE
+    PUSHBUTTON      "?",IDC_BUTTON_NAMING_HELP,56,147,9,14
+    PUSHBUTTON      "?",IDC_BUTTON_NAMING_HELP2,68,192,9,14
+    EDITTEXT        IDC_EDIT_THUMBHEIGHT,159,171,23,11,ES_AUTOHSCROLL
+    COMBOBOX        IDC_COMBO_THUMBNAIL,216,170,69,104,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "",IDC_STATIC_THUMB_COLOR,"Static",SS_GRAYFRAME | SS_NOTIFY | WS_BORDER,287,171,20,12
+    LTEXT           "x",-1,144,173,8,8
+    CONTROL         "認識したら実行",IDC_CHECK_AUTOSTART,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,115,58,54,10
+    EDITTEXT        IDC_EDIT_VIDEO_DIR,88,133,196,13,ES_AUTOHSCROLL
+    CONTROL         "ビデオディレクトリ命名法",IDC_CHECK_VIDEO_DIR,"Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,9,134,79,16
+    PUSHBUTTON      "...",IDC_BUTTON_REFER_OUTDIR_VIDEO,291,134,12,15,NOT WS_VISIBLE
+END
+
+IDD_DIALOG_WIDOWSIZE DIALOG 0, 0, 187, 44
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "ウィンドウサイズの切替"
+FONT 9, "MS UI Gothic"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,130,7,50,14
+    PUSHBUTTON      "キャンセル",IDCANCEL,130,24,50,14
+    CONTROL         "ウィンドウを小さくする",IDC_CHECK_SMALLWINDOW,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,9,78,10
+    LTEXT           "- Picmv 再起動から有効です",IDC_STATIC,11,25,87,8
+END
+
+IDD_COFIRMDIALOG_DIALOG DIALOGEX 0, 0, 482, 259
+STYLE DS_SETFONT | DS_MODALFRAME | DS_SETFOREGROUND | DS_CENTER | WS_POPUP | WS_CAPTION
+CAPTION "処理内容の確認"
+FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "続行",IDOK,369,238,50,14
+    PUSHBUTTON      "中止",IDCANCEL,424,238,50,14
+    LTEXT           "続行すると以下のようにファイルを処理します。よろしいですか?",IDC_STATIC,7,7,229,13
+    CONTROL         "",IDC_CONFIRM_AREA,"Static",SS_BLACKFRAME | NOT WS_VISIBLE,422,5,57,12
+    CONTROL         "List1",IDC_LIST_CONFIRM,"SysListView32",LVS_REPORT | LVS_NOSORTHEADER | WS_BORDER,5,25,470,187,WS_EX_STATICEDGE
+    LTEXT           "- このウィンドウを次回から出現させないためには「処理内容の確認」チェックボックスをオフにします",IDC_STATIC,9,223,322,10
+    LTEXT           "- ファイル名重複チェックはコピー実行時に行います",IDC_STATIC,9,238,204,10
+END
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 279, 55
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Picmv について"
+FONT 9, "Tahoma", 0, 0, 0x0
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,10,20,20,SS_REALSIZEIMAGE
+    LTEXT           "Copyright (C) 2005-2023 Naoyuki Hashimoto _",IDC_STATIC,40,34,180,8
+    DEFPUSHBUTTON   "OK",IDOK,225,35,50,14,WS_GROUP
+    EDITTEXT        IDC_EDIT_X32X64,43,10,185,12,ES_READONLY | NOT WS_BORDER
+END
+
+IDD_DIALOG_NAMING_RULES DIALOGEX 0, 0, 187, 99
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "命名規則とは"
+FONT 9, "ＭＳ ゴシック", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,141,77,16,6,NOT WS_VISIBLE
+    PUSHBUTTON      "ｷｬﾝｾﾙ",IDCANCEL,147,85,14,8,NOT WS_VISIBLE
+    EDITTEXT        IDC_EDIT_NAMING_RULES,0,0,186,99,ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY | ES_WANTRETURN | WS_VSCROLL,WS_EX_STATICEDGE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP_DIGITAL      BITMAP                  "res\\digital\\digital8.bmp"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_ACCELERATOR1 ACCELERATORS
+BEGIN
+    VK_F1,          IDC_BUTTON_HELP_ALL,    VIRTKEY, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_PICMOVEOPTION_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 296
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 297
+    END
+
+    IDD_PICMOVE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 326
+        BOTTOMMARGIN, 342
+    END
+
+    IDD_DIALOG_WIDOWSIZE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 37
+    END
+
+    IDD_COFIRMDIALOG_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 474
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 252
+    END
+
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 272
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_DIALOG_NAMING_RULES, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 92
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_PICMOVE_DIALOG DLGINIT
+BEGIN
+    IDC_COMBO_THUMBNAIL, 0x403, 9, 0
+0x9d95, 0xf082, 0x9d93, 0xea88, "\000" 
+    IDC_COMBO_THUMBNAIL, 0x403, 11, 0
+0x828d, 0xb382, 0xf082, 0x9d93, 0xea88, "\000" 
+    IDC_COMBO_THUMBNAIL, 0x403, 22, 0
+0x9d95, 0x8d78, 0x8282, 0x82b3, 0x93f0, 0x889d, 0x82ea, 0x82b5, 0x96c4, 
+0x9084, 0x0046, 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_ABOUTBOX AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDS_ABOUTBOX            "Picmv について(&A)..."
+    IDS_STRING102           "すでに Picmv は起動しております"
+    IDS_STRING103           "オプション..."
+    IDS_STRING104           "設定保存(&S)"
+    IDS_STRING105           "中止"
+    IDS_STRING106           "実行(&C)"
+    IDS_STRING107           "JPGファイルやフォルダのウィンドウへの\nドラッグアンドドロップも受け付けます"
+    IDS_STRING108           "%c ドライブをイジェクトできませんでした\n現在他のプログラムで %c ドライブを参照してはいないでしょうか"
+    IDS_STRING109           "ファイル存在情報を収集中...\n "
+    IDS_STRING110           "撮影情報を収集中...\n "
+    IDS_STRING111           "準備しています..."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_STRING112           "EXIFヘッダから撮影情報を収集中... "
+    IDS_STRING113           "確認待ちしています..."
+    IDS_STRING114           "スキップ:\n%s -> %s"
+    IDS_STRING115           "%s ->\n%s\nコピー済み %3.1lf / %3.1lf Mbytes\n経過時間 %d:%02d:%02d"
+    IDS_STRING116           " 予想終了時刻まであと %d:%02d:%02d"
+    IDS_STRING117           "終了しました\n正常%d個 元ファイル削除%d個 サムネイル%d個 回転%d個 エラー%d個\nコピー終了 %3.1lf Mbytes\n時間 %d:%02d:%02d"
+    IDS_STRING118           "\n同名のためシリアル番号付加%d個 サムネイルにシリアル番号付加%d個"
+    IDS_STRING119           "\nスキップ%d個"
+    IDS_STRING120           "終了しました(%3.1lf Mbytes / %d:%02d:%02d)\n"
+    IDS_STRING121           "\nメモリカードはイジェクトされましたので、安全に抜くことができます"
+    IDS_STRING122           "何もコピーしませんでした\n"
+    IDS_STRING123           "%d個の同名ファイル処理をスキップしました\n"
+    IDS_STRING124           "\nメモリカードはイジェクトされましたので、安全に抜くことができます"
+    IDS_STRING125           "中止します..."
+    IDS_STRING126           "中止しました"
+    IDS_STRING127           "メモリカードが一枚もマウントされていません\nイジェクト済みの場合は挿入し直してください\n"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_STRING128           "コピー中はドラッグアンドドロップできません\n"
+    IDS_STRING129           "設定とオプションを保存しました"
+    IDS_STRING130           "コピー中は終了できません\n今すぐ終了したい場合は中止ボタンでコピーを中止してください"
+    IDS_STRING131           "メモリカードがありません"
+    IDS_STRING132           "入力元ディレクトリの追加"
+    IDS_STRING133           "出力ディレクトリの指定"
+    IDS_STRING134           "サムネイル出力ディレクトリの指定"
+    IDS_STRING135           "サムネイル命名規則プレビュー:\n"
+    IDS_STRING136           "命名規則プレビュー:\n"
+    IDS_STRING137           "撮影日時が%4d年%02d月%02d日%02d:%02d:%02dの場合\n"
+    IDS_STRING138           "出力ディレクトリ: [%s]\n"
+    IDS_STRING139           "出力ファイル名: [%s]\n"
+    IDS_STRING140           "上書き設定は非推奨です。最悪でファイル消失の危険があります。\n\nなぜなら、同時刻 EXIF 情報をもった写真や、EXIF なしで同時刻タイムスタンプをもった写真を\n一括コピーする場合に、同一ファイル名になってしまったファイル群が、\n上書きで最後のコピーだけが生き残る場合があるからです。\n\nこのとき、もしも「元ファイルを削除」にチェックをいれていた場合、ファイルを失うことになります。よってチェックをオフにします。\n"
+    IDS_STRING141           "入力元ディレクトリの追加"
+    IDS_STRING142           "元ディレクトリ"
+    IDS_STRING143           "元ファイル名"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_STRING144           "コピー先ディレクトリ"
+    IDS_STRING145           "新ファイル名"
+    IDS_STRING146           "ウィンドウサイズ変更..."
+    IDS_STRING147           "%Y 4桁の年号\r\n%y 2桁の年号\r\n%m 月\r\n%d 日\r\n%H 時\r\n%M 分\r\n%S 秒\r\n%w 週(英語)\r\n%W 週(日本語)\r\n%g 元号\r\n%k カメラメーカー\r\n%l カメラモデル名\r\n\r\n例: %y%m%d_%H%M%S → 050315_221202  (2005.3.15 22:12:02)\r\n\r\n- 例えば、撮影日時が2005年2月14日12:34:59の場合、%Y=2005,%y=05,%m=02,%d=14,%H=12,%M=34,%S=59に置換されます。\r\n- EXIFヘッダがない場合や JPEG ファイル以外ではタイムスタンプを利用します。\r\n- 出力先ディレクトリにも撮影情報からの % 指定は有効です。Picmv は指定したディレクトリが存在しないときは確認なしに作成します。\r\n- %% は % 文字自体を示します。\r\n- ファイル命名法に拡張子は記述できません。\r\n- %o は元ファイル名・ディレクトリ名に置換されます。\r\n- ファイル名が重複する場合の処理は、シリアルナンバを付加するか、コピーしないか、上書きするかをあらかじめ選択します。\r\n\r\n"
+    IDS_STRING148           "命名法とは?"
+END
+
+#endif    // 日本語 (日本) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE 17, 1
+#pragma code_page(932)
+#endif //_WIN32
+#include "res\picmove_jp_small.rc2"  // Microsoft Visual C++ 以外のツールで編集されたリソース
+#include "l.jpn\afxres.rc"          // 標準のコンポーネント
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

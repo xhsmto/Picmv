@@ -1,0 +1,488 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+// Generated Help ID header file
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "resource.hm"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// ニュートラル resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#pragma code_page(932)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "..\\res\\picmove.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 282, 55
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About Picmv"
+FONT 8, "Tahoma", 0, 0, 0x0
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,10,20,20,SS_REALSIZEIMAGE
+    LTEXT           "Copyright (C) 2005-2023 Naoyuki Hashimoto",IDC_STATIC,61,34,159,8
+    DEFPUSHBUTTON   "OK",IDOK,225,33,50,14,WS_GROUP
+    EDITTEXT        IDC_EDIT_X32X64,61,10,216,12,ES_READONLY | NOT WS_BORDER
+END
+
+IDD_PICMOVE_DIALOG DIALOGEX 0, 0, 415, 442
+STYLE DS_SETFONT | DS_3DLOOK | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_ACCEPTFILES | WS_EX_APPWINDOW
+CAPTION "Picmv"
+FONT 8, "Tahoma", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "E&xit",IDOK,255,5,50,14
+    DEFPUSHBUTTON   "Exe&cute",IDC_BUTTON_EXEC,240,425,65,14,BS_TOP
+    PUSHBUTTON      "&Save Options",IDC_BUTTON_SAVE,55,425,48,14
+    CONTROL         "Automatically Exit",IDC_CHECK_AUTOQUIT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,235,25,71,10
+    PUSHBUTTON      "Stop",IDC_BUTTON_STOP,190,425,48,14
+    CONTROL         "Add Serial Number",IDC_RADIO_ADD_SERIAL,"Button",BS_AUTORADIOBUTTON | WS_GROUP,15,305,80,10
+    CONTROL         "Don't Copy",IDC_RADIO_NOCOPY,"Button",BS_AUTORADIOBUTTON,100,305,50,10
+    CONTROL         "Overwrite(Not recommended)",IDC_RADIO_OVERWRITE,"Button",BS_AUTORADIOBUTTON,165,305,125,10
+    EDITTEXT        IDC_EDIT_INDIR,20,125,220,15,ES_AUTOHSCROLL
+    CONTROL         "Delete Original Files",IDC_CHECK_DELETEOK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,145,85,10
+    CONTROL         "Eject After Coping",IDC_CHECK_EJECT,"Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,110,145,75,10
+    EDITTEXT        IDC_EDIT_OUTDIR,72,170,218,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_NAMING,72,201,218,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_THUMB_DIR,72,275,107,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_THUMBNAMING,203,275,97,13,ES_AUTOHSCROLL
+    CONTROL         "Image Rotation by Orientation Attribute",IDC_CHECK_ORIENTATION,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,330,150,8
+    CONTROL         "Automatic Contrast Control",IDC_CHECK_AUTOCONTRAST,
+                    "Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_DISABLED | WS_TABSTOP,175,330,76,8
+    EDITTEXT        IDC_EDIT_THUMBWIDTH,110,257,28,12,ES_AUTOHSCROLL
+    LTEXT           "Copies JPEG Files from Memory Cards",IDC_STATIC,45,5,185,17
+    CONTROL         "Progress1",IDC_PROGRESS1,"msctls_progress32",PBS_SMOOTH | NOT WS_VISIBLE | WS_BORDER,30,20,38,13
+    LTEXT           "Image Dir",IDC_STATIC,10,170,56,15,0,0,HIDC_STATIC
+    LTEXT           "Destination Dir\nNaming Rules",IDC_STATIC,15,275,54,15
+    LTEXT           "",IDC_STATIC_PROGRESS_TEXT,57,368,243,49
+    CONTROL         "Make Thumbnails",IDC_CHECK_THUMBNAIL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,259,75,10
+    LTEXT           "Pixels",IDC_STATIC,182,260,15,8
+    GROUPBOX        "Input",IDC_STATIC,5,35,305,125,0,WS_EX_TRANSPARENT
+    GROUPBOX        "Output",IDC_STATIC,5,160,305,185
+    ICON            IDR_MAINFRAME,IDC_STATIC,4,0,20,20,SS_REALSIZEIMAGE
+    CONTROL         "",IDC_PICTURE_BOX,"Static",SS_BLACKFRAME | SS_NOTIFY,314,0,101,430
+    LTEXT           "Naming Rules",IDC_STATIC,10,206,45,8
+    GROUPBOX        "Thumbnails",IDC_STATIC,10,249,295,43
+    CONTROL         "",IDC_PICBAR,"Static",SS_BLACKFRAME,5,350,300,14,WS_EX_STATICEDGE
+    GROUPBOX        "Image Processing",IDC_STATIC,10,320,295,20
+    GROUPBOX        "When Filename Overlaps",IDC_STATIC,10,295,295,25
+    CONTROL         "Auto-recognize Memory Cards Directory",IDC_RADIO_AUTO_DETECT,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,10,45,160,10
+    CONTROL         "Manual Setup",IDC_RADIO_MANUAL_DETECT,"Button",BS_AUTORADIOBUTTON | BS_MULTILINE,10,105,285,15
+    EDITTEXT        IDC_EDIT_AUTO_INDIR,263,45,42,38,ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY
+    LTEXT           "",IDC_STATIC_PROGRESS_TEXT2,5,397,48,21
+    PUSHBUTTON      "Eject",IDC_BUTTON_EJECT,265,85,40,15
+    CONTROL         IDB_BITMAP3,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE | WS_BORDER,314,431,101,11
+    PUSHBUTTON      "Add...",IDC_BUTTON_REFER_INDIR,275,125,30,14
+    CONTROL         "",IDC_GL,"Static",SS_BLACKFRAME | SS_NOTIFY,10,55,250,46
+    PUSHBUTTON      "...",IDC_BUTTON_REFER_OUTDIR,295,170,12,14
+    PUSHBUTTON      "...",IDC_BUTTON_REFER_THUMBDIR,183,274,12,14
+    PUSHBUTTON      "?",IDC_BUTTON_HELP_ALL,235,5,10,14,WS_DISABLED
+    PUSHBUTTON      "Clear",IDC_BUTTON_CLEAR,245,125,30,14
+    LTEXT           "Naming Rules:For example, On February 14th 12:34:59 2005 at the taking a picture date: %Y=2005, %y=05, %m=02, %d=14%, H=12, %M=34, and %S=59 / %o = Original Name",IDC_STATIC,26,222,275,25
+    PUSHBUTTON      "Options...",IDC_BUTTON_OPTION,5,425,48,14
+    CONTROL         "Preview",IDC_CHECK_CONFIRM,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,175,25,55,10
+    CONTROL         "",IDC_STATIC_DIGITAL,"Static",SS_BLACKFRAME,5,366,47,28,WS_EX_STATICEDGE
+    PUSHBUTTON      "?",IDC_BUTTON_NAMING_HELP,9,221,11,13
+    PUSHBUTTON      "?",IDC_BUTTON_NAMING_HELP2,297,224,11,13,NOT WS_VISIBLE
+    EDITTEXT        IDC_EDIT_THUMBHEIGHT,152,258,27,11,ES_AUTOHSCROLL
+    COMBOBOX        IDC_COMBO_THUMBNAIL,209,258,67,104,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "x",IDC_STATIC,142,260,9,7
+    CONTROL         "",IDC_STATIC_THUMB_COLOR,"Static",SS_GRAYFRAME | SS_NOTIFY | WS_BORDER,277,259,23,11
+    CONTROL         "Auto-start",IDC_CHECK_AUTOSTART,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,189,44,68,9
+    EDITTEXT        IDC_EDIT_VIDEO_DIR,127,186,163,13,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_BUTTON_REFER_OUTDIR_VIDEO,294,188,12,14,NOT WS_VISIBLE
+    CONTROL         "Video Dir",IDC_CHECK_VIDEO_DIR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,73,186,44,10
+END
+
+IDD_PICMOVEOPTION_DIALOG DIALOGEX 0, 0, 357, 367
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Options"
+FONT 8, "Tahoma", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,245,347,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,300,347,50,14
+    CONTROL         "Slider1",IDC_SLIDER_DETECT_TIME,"msctls_trackbar32",TBS_NOTICKS | WS_TABSTOP,125,15,165,15
+    CONTROL         "Slider2",IDC_SLIDER_PICBAR_TIME,"msctls_trackbar32",TBS_NOTICKS | WS_TABSTOP,125,50,165,15
+    CONTROL         "Slider3",IDC_SLIDER_GL_TIME,"msctls_trackbar32",TBS_NOTICKS | WS_TABSTOP,125,75,165,16
+    CONTROL         "Interpolate the thumbnail image for progress in bi-linear",IDC_CHECK_BILINEAR,
+                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,20,95,200,10
+    CONTROL         "Display flying thumbnail and histogram",IDC_CHECK_GLPICTURE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,20,105,175,10
+    EDITTEXT        IDC_EDIT_EXTENSIONS,58,132,146,12,ES_AUTOHSCROLL
+    CONTROL         "Slider4",IDC_SLIDER_JPEG_Q,"msctls_trackbar32",TBS_NOTICKS | WS_TABSTOP,120,180,160,15
+    CONTROL         "Slider5",IDC_SLIDER_THUMB_JPEG_Q,"msctls_trackbar32",TBS_NOTICKS | WS_TABSTOP,120,205,160,15
+    EDITTEXT        IDC_EDIT_SERIAL_CHAR,60,240,20,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_SERIAL_COLUMN,155,240,25,12,ES_AUTOHSCROLL
+    CONTROL         "Spin2",IDC_SPIN_SERIAL_COLUMN,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS | UDS_NOTHOUSANDS,180,240,11,12
+    CONTROL         "Convert into uppercase",IDC_RADIO_EX_UPPER,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,15,270,120,10
+    CONTROL         "Convert into lowercase",IDC_RADIO_EX_LOWER,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,140,270,110,10
+    CONTROL         "Do Not Convert",IDC_RADIO_EX_NOCHANGE,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,255,270,75,10
+    RTEXT           "Detection interval",IDC_STATIC,25,20,37,9
+    RTEXT           "Update interval of 3D rendering",IDC_STATIC,10,80,105,8
+    RTEXT           "Output by image processing functions",IDC_STATIC,15,181,81,20
+    RTEXT           "Thumbnail",IDC_STATIC,33,205,64,8
+    LTEXT           "Short(1sec)",IDC_STATIC,70,20,50,8
+    LTEXT           "Long(5sec)",IDC_STATIC,300,20,41,8
+    LTEXT           "High",IDC_STATIC,295,195,15,8
+    LTEXT           "Low",IDC_STATIC,105,195,15,8
+    RTEXT           "Update interval of thumbnail display",IDC_STATIC,10,55,105,8
+    LTEXT           "Short",IDC_STATIC,70,65,39,8
+    LTEXT           "Long",IDC_STATIC,300,65,39,8
+    LTEXT           "Images",IDC_STATIC,18,135,38,9
+    GROUPBOX        "Serial Number",IDC_STATIC,10,230,330,25
+    LTEXT           "delimiter",IDC_STATIC,20,240,35,8
+    LTEXT           "Number of digits",IDC_STATIC,95,240,55,8
+    GROUPBOX        "Input",IDC_STATIC,5,125,345,35
+    GROUPBOX        "JPEG Quality settings",IDC_STATIC,10,170,330,55
+    GROUPBOX        "Copy processing progress",IDC_STATIC,5,40,345,80
+    GROUPBOX        "Output",IDC_STATIC,5,160,345,146
+    GROUPBOX        "Auto-recognize Memory Card",IDC_STATIC,5,7,345,28
+    GROUPBOX        "Upper/lower letter conversion setting of extension",IDC_STATIC,10,260,330,25
+    CONTROL         "SmartCopy(Recommended) - If file contents is the same, the copy is skipped.",IDC_CHECK_SMARTREPLACE,
+                    "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,12,291,330,13
+    GROUPBOX        "Cooperation with Picgl",IDC_STATIC,5,311,345,31
+    CONTROL         "Cooperate with Picgl",IDC_CHECK_PICGL_SUPPORT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,321,82,10
+    LTEXT           "Place of Picgl.exe",IDC_STATIC,96,319,35,15
+    EDITTEXT        IDC_EDIT_PICGL_DIR,132,321,188,15,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "...",IDC_BUTTON_PICGL_DIR,325,321,15,14
+    CONTROL         "Add S/N '1' at non-duplication.",IDC_CHECK_ALWAYSSN,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,199,241,128,9
+    CONTROL         "Copy it also excluding folder \\DCIM. ",IDC_CHECK_OTHERTHANDCIM,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,214,134,136,9
+    LTEXT           "Videos",IDC_STATIC,18,146,38,9
+    EDITTEXT        IDC_EDIT_EXTENSIONS_VIDEO,57,146,146,12,ES_AUTOHSCROLL
+END
+
+IDD_COFIRMDIALOG_DIALOG DIALOGEX 0, 0, 531, 450
+STYLE DS_SETFONT | DS_MODALFRAME | DS_SETFOREGROUND | DS_CENTER | WS_POPUP | WS_CAPTION
+CAPTION "Preview"
+FONT 8, "Tahoma", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Continue",IDOK,420,430,50,14
+    PUSHBUTTON      "Stop",IDCANCEL,475,430,50,14
+    LTEXT           "Process the files as follows. Are you sure?",IDC_STATIC,7,7,229,13
+    CONTROL         "",IDC_CONFIRM_AREA,"Static",SS_BLACKFRAME | NOT WS_VISIBLE,422,5,57,12
+    CONTROL         "List1",IDC_LIST_CONFIRM,"SysListView32",LVS_REPORT | LVS_NOSORTHEADER | WS_BORDER,5,25,520,380,WS_EX_STATICEDGE
+    LTEXT           "- To prevent this window from appearing next time, uncheck the ""Preview"" checkbox",IDC_STATIC,5,415,389,10
+    LTEXT           "- File name duplicate checking is performed at the time of copy execution",IDC_STATIC,5,430,376,10
+END
+
+IDD_DIALOG_WIDOWSIZE DIALOGEX 0, 0, 187, 44
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Window Size"
+FONT 8, "Tahoma", 0, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,130,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,130,24,50,14
+    CONTROL         "Small Window",IDC_CHECK_SMALLWINDOW,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,9,72,10
+    LTEXT           "Effective after restarting this app.",IDC_STATIC,11,22,117,15
+END
+
+IDD_DIALOG_NAMING_RULES DIALOGEX 0, 0, 187, 151
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "What is the naming rules?"
+FONT 9, "Courier New", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,141,77,16,6,NOT WS_VISIBLE
+    PUSHBUTTON      "?????",IDCANCEL,147,85,14,8,NOT WS_VISIBLE
+    EDITTEXT        IDC_EDIT_NAMING_RULES,0,0,187,150,ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY | ES_WANTRETURN | WS_VSCROLL,WS_EX_STATICEDGE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 275
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_PICMOVE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+    END
+
+    IDD_PICMOVEOPTION_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 350
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 360
+    END
+
+    IDD_COFIRMDIALOG_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 523
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 443
+    END
+
+    IDD_DIALOG_WIDOWSIZE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 37
+    END
+
+    IDD_DIALOG_NAMING_RULES, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 144
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP3             BITMAP                  "..\\res\\picmv_logo.bmp"
+
+IDB_BITMAP_DIGITAL      BITMAP                  "..\\res\\digital\\digital8.bmp"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_ACCELERATOR1 ACCELERATORS
+BEGIN
+    VK_F1,          IDC_BUTTON_HELP_ALL,    VIRTKEY, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_PICMOVE_DIALOG DLGINIT
+BEGIN
+    IDC_COMBO_THUMBNAIL, 0x403, 6, 0
+0x6957, 0x7464, 0x0068, 
+    IDC_COMBO_THUMBNAIL, 0x403, 7, 0
+0x6548, 0x6769, 0x7468, "\000" 
+    IDC_COMBO_THUMBNAIL, 0x403, 4, 0
+0x7857, 0x0048, 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_ABOUTBOX AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG_WIDOWSIZE AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_PICMOVEOPTION_DIALOG AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_COFIRMDIALOG_DIALOG AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_PICMOVE_DIALOG AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDS_ABOUTBOX            "&About Picmv..."
+    IDS_STRING102           "Picmv already executes"
+    IDS_STRING103           "Options..."
+    IDS_STRING104           "&Save Options"
+    IDS_STRING105           "Stop"
+    IDS_STRING106           "Exe&cute"
+    IDS_STRING107           "JPG files and folders can also be dragged and dropped into the window."
+    IDS_STRING108           "The eject of %c drive cannot have been done. \nDoes not being referred to from other programs to %c drive now?"
+    IDS_STRING109           "File existence information is being collected...\n "
+    IDS_STRING110           "EXIF information is being collected...\n "
+    IDS_STRING111           "Preparing..."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_STRING112           "Taking a picture information is being collected from the EXIF header... "
+    IDS_STRING113           "Your confirmation is waited..."
+    IDS_STRING114           "Skip:\n%s -> %s"
+    IDS_STRING115           "%s ->\n%s\nCopied %3.1lf / %3.1lf Mbytes\nElapsed Time %d:%02d:%02d"
+    IDS_STRING116           "  Expectation finish time for %d:%02d:%02d"
+    IDS_STRING117           "Done\nSuccess:%d Delete:%d Thumbnail:%d Rotation:%d Error:%d\nCopy end %3.1lf Mbytes\nTime %d:%02d:%02d"
+    IDS_STRING118           "\nSerial number addition because of same name:%d Serial number addition to thumbnail:%d"
+    IDS_STRING119           "\nSkip:%d"
+    IDS_STRING120           "Finished(%3.1lf Mbytes / %d:%02d:%02d)\n"
+    IDS_STRING121           "\nBecause memory card was ejected, it can remove safely."
+    IDS_STRING122           "Nothing was copied.\n"
+    IDS_STRING123           "%d same name file processing was skipped\n"
+    IDS_STRING124           "\nBecause memory card was ejected, it can remove safely."
+    IDS_STRING125           "Interrupting..."
+    IDS_STRING126           "Stopped"
+    IDS_STRING127           "Memory card is not mounted.\nWhen ejected, please reinsert.\n"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_STRING128           "Cannot drag and drop during copy.\n"
+    IDS_STRING129           "Setup and options were saved."
+    IDS_STRING130           "Cannot exit during copy.\nPush the stop button when you want to exit right now."
+    IDS_STRING131           "There is no memory card."
+    IDS_STRING132           "Addition of source directories"
+    IDS_STRING133           "Specification of output directory"
+    IDS_STRING134           "Specification of thumbnail output directory"
+    IDS_STRING135           "Thumbnail naming rules preview:\n"
+    IDS_STRING136           "Naming rules preview:\n"
+    IDS_STRING137           "When photographing date is %4d(year) %02d(mon) %02d(day) %02d:%02d:%02d:\n"
+    IDS_STRING138           "Outpuy directory: [%s]\n"
+    IDS_STRING139           "Output filename: [%s]\n"
+    IDS_STRING140           "Overwrite setup is not recommended.\nWhen the worst, there is risk of file disappearance.\nBecause, this time   EXIF When carrying out package copy of the photograph with information, file group which is the same file name is because only the last copy may survive by overwrite.\nFile will be lost when check is being put in for 'Delete Original Files' at this time.\nTherefore, check is turned OFF.\n"
+    IDS_STRING141           "Addition of Source Directory"
+    IDS_STRING142           "Source Dir"
+    IDS_STRING143           "Source Filename"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_STRING144           "Dest.Dir"
+    IDS_STRING145           "New Filename"
+    IDS_STRING146           "Switch Window Size..."
+    IDS_STRING147           "%Y 4figures year\r\n%y 2figures year\r\n%m Month\r\n%d Day\r\n%H Hour\r\n%M Minute\r\n%S Second\r\n%w Week(English)\r\n%W Week(Japanese)\r\n%o Original file name\r\n%p MyPicture Folder\r\n%e Extension\r\n\r\nExample :  %y%m%d_%H%M%S -> 050315_221202 (2005.3.15 22:12:02)\r\n\r\n- For example, when photographing date is 12:34:59 on February 14, 2005, it is replaced by %Y=2005, %y=05, %m=02, %d=14, %H=12, %M=34, and %S=59.\r\n- Time stamp is used case where there is no EXIF header, and except JPEG file.\r\n- % specification from photography information is effective also in output destination change directory.\r\n- Picmv is created without check when specified directory does not exist.\r\n- %% shows % character itself.\r\n- Extension cannot be described to file nomenclature.\r\n- %o is replaced by original file name and directory name.\r\n- Processing in case file name overlaps selects beforehand whether serial number is added, it does not copy, or it overwrites.\r\n\r\n"
+    IDS_STRING148           "What is the naming rules?"
+END
+
+#endif    // ニュートラル resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// 日本語 (日本) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+#pragma code_page(932)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 17, 1\r\n"
+    "#pragma code_page(932)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\picmove.rc2""  // Microsoft Visual C++ ?E?O?I?c?[???A?O?W?3?e?????\\?[?X\r\n"
+    "#include ""l.jpn\\afxres.rc""          // ?W???I?R?“?|?[?l?“?g\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // 日本語 (日本) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE 17, 1
+#pragma code_page(932)
+#endif //_WIN32
+#include "res\picmove.rc2"  // Microsoft Visual C++ ?E?O?I?c?[???A?O?W?3?e?????\?[?X
+#include "l.jpn\afxres.rc"          // ?W???I?R?“?|?[?l?“?g
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

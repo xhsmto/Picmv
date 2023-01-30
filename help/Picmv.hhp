@@ -1,0 +1,21 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=Picmv.chm
+Contents file=Picmv.hhc
+Display compile progress=Yes
+Index file=Index.hhk
+Language=0x411 “ú–{Œê
+
+
+[FILES]
+0.html
+99_develop.html
+02_env.html
+03_howto.html
+04_naming.html
+05_options.html
+06_notice.html
+01_inst.html
+
+[INFOTYPES]
+

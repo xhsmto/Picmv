@@ -1,0 +1,7 @@
+; picmove_en.def : DLL 用のモジュール パラメータ宣言
+
+LIBRARY      "picmove_en"
+DESCRIPTION  'picmove_en Windows Dynamic Link Library'
+
+EXPORTS
+    ; 明示的なエクスポートはここへ記述できます

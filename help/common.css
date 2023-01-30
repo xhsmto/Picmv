@@ -1,0 +1,33 @@
+
+/*
+td.col1 { color: #01015D; background: #FFF4A2; font-size=70%; }
+td.col2 { color: #01015D; background: #FFFAD8; font-size=70%;}*/
+td.col1 { color: #000000; background: #fff4a2; font-size=70%; }
+td.col2 { color: #000000; background: #fffad8; font-size=70%;}
+
+td.today_col1 { color: #01015D; background: #A2F4FF; font-size=70%;}
+td.today_col2 { color: #01015D; background: #D8FAFF; font-size=70%;}
+td.edit_col { color: #800000; background: #ffeeee; font-size=70%; border-color: black; border-width: 1px; border-style: solid; }
+td.col_field { color: #000000; background: #FFE300; font-size=80%;font-weight: bold;}
+.error { color: #ffff00; background: #000000; font-size=100%;font-weight: bold;}
+.sql { color: #000030; background: #eeeeee; font-size=80%; font-family:monospace;}
+.ftitle { color: #000000; background: #ffffff; font-size=90%; font-weight:bold; margin-top:25px; border-bottom: 1px solid gray; border-top: 2px solid gray;}
+.col_fe1 { color: #FFffff; background: #00205D; font-size=80%;}
+.col_fe2 { color: #FFffff; background: #00203D; font-size=80%;}
+.col_fe0 { color: #FFffff; background: #40203D; font-size=80%;}
+.notice { color: #008f10; font-size=80%;}
+.cons { color: #00ff00;  background: #000000; font-size=100%;}
+.tablename { font-size=130%;  font-family:"Times New Roman"; font-weight:bold; }
+.flatbox { border: 1px solid #000000; background:#ffeeee; color:#000000; font-size=70%; font-family=monospace;}
+.fieldButton { border: 0px solid #000000; background:#ffe300; color:#0000ff;   }
+.fieldButton2 { border: 0px solid #000000; background:#ffe300; color:#0000ff; font-weight:bold;  }
+.flatboxgreen { border: 1px solid #000000; background:#000000; color:#00ff00; }
+
+.fbar {width:100%; margin:0px; padding:0px; font:normal normal normal 100% Arial; color:#000000; background:#404040; background: url(images/headerback.gif);}
+.fbar_left {width:100%;margin:0px; padding:0px; font:normal normal normal 100% Arial; color:#000000; background:#404040; background: url(images/headerback.gif);}
+.fbar_plain {margin:0px; padding:0px; }
+
+.normal { color: #000000;  background: #ffffff; font-size=80%;}
+.midashi {color: #ddddff; background: #002040; margin:15 0 15 0px; padding:5px; font-size=150%; font-weight:bold;}
+.midashi2 {color: #ddddff; background: #002040; margin:15 0 3 0px; padding:5px; font-size=120%; font-weight:bold;}
+.warning { color: #ff0000; background: #000000; font-size=120%; padding:10px; font-weight:bold;}
