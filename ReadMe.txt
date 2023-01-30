@@ -27,7 +27,7 @@ Picmv ver.1.60
 
 ●動作環境
 
-Windows8/10
+Windows 10
 
 
 
@@ -437,12 +437,13 @@ Inno Setup
 ●作者
 
 橋本直之 (nyk)
-メール: nyk@palette.plala.or.jp
+メール: hashimoto.naoyuki@gmail.com
 WEB: http://www6.plala.or.jp/nyk
+Twitter: https://twitter.com/nyk2
+GitHub: https://github.com/xhsmto/Picmv
 
 
-
-●ライセンス
+●このアプリのライセンス
 
 (MIT License)
 
