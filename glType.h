@@ -19,14 +19,14 @@
 
 class CglVector3 {
 public:
-	CglVector3() { x= y= z= 0.0; }
-	~CglVector3() {  }
+	CglVector3() { x = y = z = 0.0; }
+	~CglVector3() {}
 	double x, y, z;
 };
 
 class CglAscii {
 private:
-	GLubyte Bits[8*128];
+	GLubyte Bits[8 * 128];
 public:
 	CglAscii();
 	~CglAscii();
@@ -37,10 +37,10 @@ class CglPicture {
 private:
 	bool active;
 	double aspect_ratio;
-//	unsigned char buffer[256*256*3];
+	//	unsigned char buffer[256*256*3];
 	bool bTextureLoaded;
 	int mytexid;
-	
+
 public:
 	CglPicture();
 	~CglPicture();
@@ -48,14 +48,14 @@ public:
 	double x, y, z;
 	double tgt_x, tgt_y, tgt_z;
 	double deg_y;
-//	double deg_z, deg_z_tgt;
+	//	double deg_z, deg_z_tgt;
 	void Draw(void);
 	void Action(void);
-	void SetImage(void *buf, int width, int height, double aspect_ratio_in, int mytexid_in);
+	void SetImage(void* buf, int width, int height, double aspect_ratio_in, int mytexid_in);
 	void SetActive(bool active_in) { active = active_in; }
 	bool GetActive(void) { return active; }
 	void Init(void);
-//	void SetTexid(int id) { mytexid = id; }
+	//	void SetTexid(int id) { mytexid = id; }
 };
 
 class CglCamera {
@@ -69,8 +69,8 @@ private:
 public:
 	CglCamera();
 	~CglCamera();
-	void Set(const CglVector3 &v_cam_in, const CglVector3 &v_lookat_in);
-	void SetLocal(const CglVector3 &v_cam_in, const CglVector3 &v_lookat_in);
+	void Set(const CglVector3& v_cam_in, const CglVector3& v_lookat_in);
+	void SetLocal(const CglVector3& v_cam_in, const CglVector3& v_lookat_in);
 	inline double GetX(void) { return v_cam_local.x; }
 	inline double GetY(void) { return v_cam_local.y; }
 	inline double GetZ(void) { return v_cam_local.z; }
@@ -111,34 +111,33 @@ public:
 
 
 
-class CglType  
-{
+class CglType {
 private:
 	bool fInit;
 	HGLRC m_GLRC;
 	CDC* m_GLDC;
 	HWND hWnd;
-//	double aspect_ratio;
-	int SetDCPixelFormat (HDC hdc);
+	//	double aspect_ratio;
+	int SetDCPixelFormat(HDC hdc);
 	CString old_type_string;
 	CglMediaElement media[26];
 	CglCamera camera;
 	CglPicture picture[PIC_BUFFERS];
 	int mode;
 	unsigned short histgram[PIC_BUFFERS][256];
-	unsigned char tmp_buf[PIC_BUFFERS][G_PICTURE_SIZE*G_PICTURE_SIZE*3];
+	unsigned char tmp_buf[PIC_BUFFERS][G_PICTURE_SIZE * G_PICTURE_SIZE * 3];
 	bool request_update_buf[PIC_BUFFERS];
 	double request_aspect_ratio[PIC_BUFFERS];
 	time_t request_time[PIC_BUFFERS];
 	int m_glPicture;
-	GLuint texid[32]; 
+	GLuint texid[32];
 	int counter_picidx;
 	double aspect_ratio;
 	time_t now_time, now_time_local;
 	bool realTimeClock;
 	double clock_local_y, clock_y;
-//	HDC hdcGL_save;
-	// メッセージ用カメラに切り替え
+	//	HDC hdcGL_save;
+		// メッセージ用カメラに切り替え
 	int programSwitch;
 	// メッセージ用カメラ
 	CglCamera cameraMessage;
@@ -149,19 +148,19 @@ private:
 public:
 	CglType();
 	virtual ~CglType();
-	bool InitGL(CWnd *cwnd);
+	bool InitGL(CWnd* cwnd);
 	inline void SetGlPicture(int sw) { m_glPicture = sw; }
 	void DrawGL();
-//	void DrawGL_NormalProgram();
-//	void DrawGL_MessageProgram();
+	//	void DrawGL_NormalProgram();
+	//	void DrawGL_MessageProgram();
 	void DestroyGL();
-	void Type(CString &type_string);
+	void Type(CString& type_string);
 	void Access(int drive, double access_in);
-	void Touch(CString &type_string);
+	void Touch(CString& type_string);
 	void SetMode(int mode_in) { mode = mode_in; }
-	void SetPicture(CxImage *image_in, int width, int height, double aspect_ratio_in, int pic_idx, time_t t);
+	void SetPicture(CxImage* image_in, int width, int height, double aspect_ratio_in, int pic_idx, time_t t);
 	// メッセージを投入する
-	void SetMessage(const CString &message_in);
+	void SetMessage(const CString& message_in);
 	inline void SetRealTimeClock(bool sw) { realTimeClock = sw; }
 	inline void SetHwnd(HWND hwnd_in) { hWnd = hwnd_in; }
 };

@@ -9,7 +9,7 @@
 #endif // _MSC_VER > 1000
 
 #ifndef __AFXWIN_H__
-	#error include 'stdafx.h' before including this file for PCH
+#error include 'stdafx.h' before including this file for PCH
 #endif
 
 #include "resource.h"		// メイン シンボル
@@ -19,24 +19,23 @@
 // このクラスの動作の定義に関しては picmove.cpp ファイルを参照してください。
 //
 
-class CPicmoveApp : public CWinApp
-{
+class CPicmoveApp : public CWinApp {
 private:
 	HANDLE hMSP;    // 多重起動防止用Mutex Handle
 	bool LoadMyStrings(void);
 
 public:
 	int bMiniSize;
-	bool LoadLanguageDll(const CString &);
+	bool LoadLanguageDll(const CString&);
 	bool requestStop;
-//	int lang;
+	//	int lang;
 	CPicmoveApp();
 	void saveIniFile(void);
 	void loadIniFile(void);
-// オーバーライド
-	// ClassWizard は仮想関数のオーバーライドを生成します。
-	//{{AFX_VIRTUAL(CPicmoveApp)
-	public:
+	// オーバーライド
+		// ClassWizard は仮想関数のオーバーライドを生成します。
+		//{{AFX_VIRTUAL(CPicmoveApp)
+public:
 	virtual BOOL InitInstance();
 	//}}AFX_VIRTUAL
 

@@ -1,5 +1,4 @@
 // WsDlg.cpp : インプリメンテーション ファイル
-//
 
 #include "stdafx.h"
 #include "picmove.h"
@@ -14,24 +13,19 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CWsDlg ダイアログ
 
-
 CWsDlg::CWsDlg(CWnd* pParent /*=NULL*/)
-	: CDialog(CWsDlg::IDD, pParent)
-{
+	: CDialog(CWsDlg::IDD, pParent) {
 	//{{AFX_DATA_INIT(CWsDlg)
 	m_CHECK_SMALLWINDOW = FALSE;
 	//}}AFX_DATA_INIT
 }
 
-
-void CWsDlg::DoDataExchange(CDataExchange* pDX)
-{
+void CWsDlg::DoDataExchange(CDataExchange* pDX) {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CWsDlg)
 	DDX_Check(pDX, IDC_CHECK_SMALLWINDOW, m_CHECK_SMALLWINDOW);
 	//}}AFX_DATA_MAP
 }
-
 
 BEGIN_MESSAGE_MAP(CWsDlg, CDialog)
 	//{{AFX_MSG_MAP(CWsDlg)

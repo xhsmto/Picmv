@@ -8,55 +8,48 @@
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
-driveElement::driveElement()
-{	
+driveElement::driveElement() {
 	driveLetter = 0;
 	fMount = false;
 	fDcim = false;
 	type = 0;
-//	mediaSize = 0;
-//	remainSize = 0;
+	//	mediaSize = 0;
+	//	remainSize = 0;
 }
 
-driveElement::~driveElement()
-{}
+driveElement::~driveElement() {}
 
 
 //////////////////////////////////////////////////////////////////////
 // 構築/消滅
 //////////////////////////////////////////////////////////////////////
 
-CNykDrive::CNykDrive()
-{
+CNykDrive::CNykDrive() {
 	drives_local.clear();
 }
 
-CNykDrive::~CNykDrive()
-{
+CNykDrive::~CNykDrive() {
 
 }
 
-int CNykDrive::getNumberDrive(void)
-{
-	return (int)drives_local.size();
+int CNykDrive::getNumberDrive(void) {
+	return (int) drives_local.size();
 }
 
-bool CNykDrive::getDriveInfo(int index_in, driveElement *element_in)
-{
-	if (index_in < 0) return false;
-	if (index_in >= drives_local.size()) return false;
+bool CNykDrive::getDriveInfo(int index_in, driveElement* element_in) {
+	if(index_in < 0) return false;
+	if(index_in >= drives_local.size()) return false;
 	*element_in = drives_local[index_in];
 	return true;
 }
 
 
 // cDriveLetter = A-Z
-static bool isMountVolume(TCHAR cDriveLetter)
-{
+static bool isMountVolume(TCHAR cDriveLetter) {
 	LPTSTR szVolumeFormat = TEXT("\\\\.\\%c:");
 	TCHAR szVolumeName[8];
 	HANDLE hVolume;
@@ -64,43 +57,41 @@ static bool isMountVolume(TCHAR cDriveLetter)
 	wsprintf(szVolumeName, szVolumeFormat, cDriveLetter);
 
 	TRACE("isMount %s\n", szVolumeName);
-	hVolume = CreateFile(   szVolumeName,
+	hVolume = CreateFile(szVolumeName,
 		GENERIC_READ,
 		FILE_SHARE_READ | FILE_SHARE_WRITE,
 		NULL,
 		OPEN_EXISTING,
 		0,
-		NULL );
-	if (hVolume == INVALID_HANDLE_VALUE) {
+		NULL);
+	if(hVolume == INVALID_HANDLE_VALUE) {
 		return false;
 	}
 	CloseHandle(hVolume);
 	return true;
 }
 
-static bool existDcim(char cDriveLetter)
-{
+static bool existDcim(char cDriveLetter) {
 	CString name;
 
 	name.Format("%c:\\DCIM\\", cDriveLetter);
 	DWORD atr = ::GetFileAttributes(name);
 	TRACE("%s attr=%d\n", name, atr);
-	if (atr == -1) return false;
-	if (atr & FILE_ATTRIBUTE_DIRECTORY) return true;
+	if(atr == -1) return false;
+	if(atr & FILE_ATTRIBUTE_DIRECTORY) return true;
 	return false;
 }
 
 
 
-bool CNykDrive::setDriveInfoRemovableOnly(void)
-{
+bool CNykDrive::setDriveInfoRemovableOnly(void) {
 	drives_local.clear();
 	DWORD fDrive = ::GetLogicalDrives();
 	bool driveArray[32];
 
 	DWORD i;
-	for (i = 0; i < 32; i++) {
-		if ((1<<i) & fDrive) {
+	for(i = 0; i < 32; i++) {
+		if((1 << i) & fDrive) {
 			driveArray[i] = true;
 			//printf("%c:\n", 'A'+i);
 		}
@@ -109,14 +100,14 @@ bool CNykDrive::setDriveInfoRemovableOnly(void)
 		}
 	}
 
-	unsigned char path[] = " :\\";			
-	for (i = 'D' - 'A'; i <= 'Z' - 'A'; i++) {
-		if (driveArray[i]) {
+	unsigned char path[] = " :\\";
+	for(i = 'D' - 'A'; i <= 'Z' - 'A'; i++) {
+		if(driveArray[i]) {
 			path[0] = 'A' + i;
-			DWORD type = GetDriveType((const char*)path);
-			if (type == DRIVE_REMOVABLE) {
-//				TRACE("drive %c\n", i + 'A');
-//				continue;
+			DWORD type = GetDriveType((const char*) path);
+			if(type == DRIVE_REMOVABLE) {
+				//				TRACE("drive %c\n", i + 'A');
+				//				continue;
 
 				driveElement tmp;
 
@@ -127,7 +118,7 @@ bool CNykDrive::setDriveInfoRemovableOnly(void)
 				tmp.fMount = isMountVolume(tmp.driveLetter);
 
 				// ディスクのルートに DCIM フォルダがあるか調べる
-				if (tmp.fMount) {
+				if(tmp.fMount) {
 					tmp.fDcim = existDcim(tmp.driveLetter);
 				}
 				else {

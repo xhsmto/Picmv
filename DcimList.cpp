@@ -21,7 +21,7 @@ using namespace std;
 
 #ifdef _DEBUG
 #undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
+static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
@@ -36,94 +36,88 @@ Dcim::Dcim()
 // 構築/消滅
 //////////////////////////////////////////////////////////////////////
 
-CDcimList::CDcimList()
-{
+CDcimList::CDcimList() {
 	dcim.clear();
 	extensions = "JPG";
 	extensions_video = "AVI";
-//	m_outDirs = 1;
+	//	m_outDirs = 1;
 }
 
-CDcimList::~CDcimList()
-{
+CDcimList::~CDcimList() {
 	TRACE("dcimlist deconstractor\n");
 	dcim.clear();
 }
 
-void CDcimList::Clear(void)
-{
+void CDcimList::Clear(void) {
 	dcim.clear();
 }
 
-static bool nykExtensionsCheck(const CString &src_in, const CString &ext_list)
-{
+static bool nykExtensionsCheck(const CString& src_in, const CString& ext_list) {
 	TRACE("in %s %s\n", src_in, ext_list);
-	if (src_in.GetLength() == 0) return false;
-	if (ext_list.GetLength() == 0) return false;
-	
+	if(src_in.GetLength() == 0) return false;
+	if(ext_list.GetLength() == 0) return false;
+
 	CString src = src_in;
 	src.MakeUpper();
 
 	// 拡張子だけ取り出す
 	int c = src.ReverseFind('.');
-	if (c == -1) return false; // 拡張子がない場合
-	src = src.Mid(c+1);
+	if(c == -1) return false; // 拡張子がない場合
+	src = src.Mid(c + 1);
 	// src="AVI" とか
 
 	int n = 0;
-	while (1) {
+	while(1) {
 		int c = ext_list.Find(',', n);
-		if (c == -1) {
+		if(c == -1) {
 			TRACE("F %s %s\n", ext_list.Mid(n), src);
-			if (ext_list.Mid(n) == src) return true;
+			if(ext_list.Mid(n) == src) return true;
 			return false;
 		}
-		TRACE("X %s %s\n", ext_list.Mid(n,c-n), src);
-		if (ext_list.Mid(n, c-n) == src) return true;
+		TRACE("X %s %s\n", ext_list.Mid(n, c - n), src);
+		if(ext_list.Mid(n, c - n) == src) return true;
 		n = c + 1;
 	}
 }
 
-static int nykGetFileType(const CString &fileName, const CString &extension, const CString &extension_for_video)
-{
+static int nykGetFileType(const CString& fileName, const CString& extension, const CString& extension_for_video) {
 	CString name = fileName;
 	int c = name.ReverseFind('.');
-	if (c == -1) { return NYK_FILE_INVALID; }// 拡張子がない場合
+	if(c == -1) { return NYK_FILE_INVALID; }// 拡張子がない場合
 	CString ext = name.Mid(c);
-	if (ext.CompareNoCase(".JPG") == 0) return NYK_FILE_JPG;
-	else if (ext.CompareNoCase(".JPEG") == 0) return NYK_FILE_JPG;
-	else if (nykExtensionsCheck(name, extension)) return NYK_FILE_OTHER_IMAGE;
-	else if (nykExtensionsCheck(name, extension_for_video)) return NYK_FILE_OTHER_VIDEO;
+	if(ext.CompareNoCase(".JPG") == 0) return NYK_FILE_JPG;
+	else if(ext.CompareNoCase(".JPEG") == 0) return NYK_FILE_JPG;
+	else if(nykExtensionsCheck(name, extension)) return NYK_FILE_OTHER_IMAGE;
+	else if(nykExtensionsCheck(name, extension_for_video)) return NYK_FILE_OTHER_VIDEO;
 	// ここへきているということは拡張子はあるが、該当するのにないよ
 	return  NYK_FILE_INVALID;
 
 }
 
 
-static int SearchJpeg(CString dir, vector<Dcim> &tgt, void (*callback)(const CString&), const CString& extensions_in, const CString& extensions_in2)
-{
+static int SearchJpeg(CString dir, vector<Dcim>& tgt, void (*callback)(const CString&), const CString& extensions_in, const CString& extensions_in2) {
 	WIN32_FIND_DATA fd;
 	HANDLE h;
-	
+
 	TRACE("dir = %s\n", dir);
-	
+
 	CString tgtname = dir + "*.*";
 	callback(tgtname);
 
-    h = FindFirstFile(tgtname,&fd);
-    if(INVALID_HANDLE_VALUE == h) {
+	h = FindFirstFile(tgtname, &fd);
+	if(INVALID_HANDLE_VALUE == h) {
 		return 0;
 	}
 	do {
 		{
-			CPicmoveApp* app = (CPicmoveApp*)AfxGetApp();
-			if (app->requestStop) { FindClose(h); return 0; }
+			CPicmoveApp* app = (CPicmoveApp*) AfxGetApp();
+			if(app->requestStop) { FindClose(h); return 0; }
 		}
 
-		if (strcmp(fd.cFileName, ".") == 0) continue;
-		if (strcmp(fd.cFileName, "..") == 0) continue;
-		if (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {	// ディレクトリだったら
-			if (strcmp(fd.cFileName, "PREVIEW") == 0) continue;
+		if(strcmp(fd.cFileName, ".") == 0) continue;
+		if(strcmp(fd.cFileName, "..") == 0) continue;
+		if(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {	// ディレクトリだったら
+			if(strcmp(fd.cFileName, "PREVIEW") == 0) continue;
 			SearchJpeg(dir + fd.cFileName + "\\", tgt, callback, extensions_in, extensions_in2);
 			continue;
 		}
@@ -131,8 +125,8 @@ static int SearchJpeg(CString dir, vector<Dcim> &tgt, void (*callback)(const CSt
 		Dcim tmp;
 		tmp.dir = dir;
 		tmp.orgName = fd.cFileName;
-		if ((!nykExtensionsCheck(tmp.orgName, extensions_in)) && (!nykExtensionsCheck(tmp.orgName, extensions_in2))) continue;
-		tmp.filesize =  (fd.nFileSizeHigh * MAXDWORD) + fd.nFileSizeLow;
+		if((!nykExtensionsCheck(tmp.orgName, extensions_in)) && (!nykExtensionsCheck(tmp.orgName, extensions_in2))) continue;
+		tmp.filesize = (fd.nFileSizeHigh * MAXDWORD) + fd.nFileSizeLow;
 		CTime t(fd.ftLastWriteTime);
 		tmp.fileTime = t.GetTime();
 		tmp.fileFormat = nykGetFileType(tmp.orgName, extensions_in, extensions_in2);
@@ -142,8 +136,7 @@ static int SearchJpeg(CString dir, vector<Dcim> &tgt, void (*callback)(const CSt
 	return 1;
 }
 
-void CDcimList::LoadList(CString dirList, void (*callback)(const CString&))
-{
+void CDcimList::LoadList(CString dirList, void (*callback)(const CString&)) {
 	// dirList はカンマ区切りなので整理する
 	dirList.TrimLeft();
 	dirList.TrimRight();
@@ -153,39 +146,38 @@ void CDcimList::LoadList(CString dirList, void (*callback)(const CString&))
 
 	this->dcim.clear();
 
-//	int counter = 0;
-	// ディレクトリのリストができたところでそれぞれの exif 情報をもとめつつ dcim に保存する
+	//	int counter = 0;
+		// ディレクトリのリストができたところでそれぞれの exif 情報をもとめつつ dcim に保存する
 	vector<CString>::iterator i;
-	for (i = dir.begin(); i != dir.end(); i++) {
+	for(i = dir.begin(); i != dir.end(); i++) {
 		TRACE("dir:: '%s'\n", *i);
 		CString basedir = *i;
 		SearchJpeg(basedir, this->dcim, callback, extensions, extensions_video);
 		{
-			CPicmoveApp* app = (CPicmoveApp*)AfxGetApp();
-			if (app->requestStop) { return ; }
+			CPicmoveApp* app = (CPicmoveApp*) AfxGetApp();
+			if(app->requestStop) { return; }
 		}
 	}
 	// これで対象ファイルのリストができた
 	//this->SortByName();
 	TRACE("---- dcim ----\n");
 	vector<Dcim>::iterator j;
-	for (j = dcim.begin(); j != dcim.end(); j++) {
+	for(j = dcim.begin(); j != dcim.end(); j++) {
 		TRACE("%s %s fs:%f t:%d\n", j->dir, j->orgName, j->filesize, j->fileTime);
 	}
 }
 
-void CDcimList::LoadListFromDragFiles(vector<CString> &dropFile_in, void (*callback)(const CString&))
-{
+void CDcimList::LoadListFromDragFiles(vector<CString>& dropFile_in, void (*callback)(const CString&)) {
 	this->dcim.clear();
 
 	vector<CString>::iterator i;
 
-	for (i = dropFile_in.begin(); i != dropFile_in.end(); i++) {
-		if (i->GetLength() <= 0) continue;
+	for(i = dropFile_in.begin(); i != dropFile_in.end(); i++) {
+		if(i->GetLength() <= 0) continue;
 		int atr = GetFileAttributes(*i);
-		if (atr == -1) continue;  // なんかエラーでた
+		if(atr == -1) continue;  // なんかエラーでた
 		// *i はディレクトリかどうか確認する
-		else if (atr & FILE_ATTRIBUTE_DIRECTORY) { // ディレクトリだった
+		else if(atr & FILE_ATTRIBUTE_DIRECTORY) { // ディレクトリだった
 			CString basedir;
 			basedir = *i;
 			basedir += "\\";
@@ -193,7 +185,7 @@ void CDcimList::LoadListFromDragFiles(vector<CString> &dropFile_in, void (*callb
 			SearchJpeg(basedir, this->dcim, callback, extensions, extensions_video);
 		}
 		// それではファイルでしょう
-		else if ((!nykExtensionsCheck(*i, extensions)) && (!nykExtensionsCheck(*i, extensions_video))) {
+		else if((!nykExtensionsCheck(*i, extensions)) && (!nykExtensionsCheck(*i, extensions_video))) {
 			TRACE("NOT JPEGAVI FILE %s\n", *i);
 			continue;
 		}
@@ -209,8 +201,8 @@ void CDcimList::LoadListFromDragFiles(vector<CString> &dropFile_in, void (*callb
 			tmp.orgName = fname + ext;
 			tmp.fileFormat = nykGetFileType(tmp.orgName, extensions, extensions_video);
 			struct _stat buf;
-			
-			if (::_stat(*i, &buf) == -1) {
+
+			if(::_stat(*i, &buf) == -1) {
 				TRACE("_stat error\n");
 				continue;
 			}
@@ -223,26 +215,23 @@ void CDcimList::LoadListFromDragFiles(vector<CString> &dropFile_in, void (*callb
 
 		// 中止要請あるか?
 		{
-			CPicmoveApp* app = (CPicmoveApp*)AfxGetApp();
-			if (app->requestStop) { return ; }
+			CPicmoveApp* app = (CPicmoveApp*) AfxGetApp();
+			if(app->requestStop) { return; }
 		}
 	}
 	//this->SortByName();
 }
 
 
-int CDcimList::GetSizeList(void)
-{
-	return (int)dcim.size();
+int CDcimList::GetSizeList(void) {
+	return (int) dcim.size();
 }
 
-void CDcimList::GetDcim(Dcim* ret, int index)
-{
+void CDcimList::GetDcim(Dcim* ret, int index) {
 	*ret = dcim[index];
 }
 
-void CDcimList::SetDcim(Dcim* val, int index)
-{
+void CDcimList::SetDcim(Dcim* val, int index) {
 	dcim[index] = *val;
 }
 /*
@@ -256,59 +245,58 @@ static bool getExtension(const CString &text, CString &ext_out)
 }
 */
 
-static void extractC2Time(int c, CString &outname, CTime &t, const CString &text, 
-						  const CString &maker, const CString &model, const CString &ext_in, int counter_by_day)
-{
+static void extractC2Time(int c, CString& outname, CTime& t, const CString& text,
+	const CString& maker, const CString& model, const CString& ext_in, int counter_by_day) {
 	CString str;
 
-	switch (c) {
+	switch(c) {
 	case 'p':
-		{
-			char path[MAX_PATH*2]; 
-			::SHGetSpecialFolderPath(AfxGetMainWnd()->GetSafeHwnd(), path, CSIDL_PERSONAL, FALSE); 
-			CString paths(path);
-			paths += "\\My Pictures";
-			outname += paths;
-		}
-		break;
+	{
+		char path[MAX_PATH * 2];
+		::SHGetSpecialFolderPath(AfxGetMainWnd()->GetSafeHwnd(), path, CSIDL_PERSONAL, FALSE);
+		CString paths(path);
+		paths += "\\My Pictures";
+		outname += paths;
+	}
+	break;
 	case 'e':
-		{
-			CString ext = ext_in;
-			ext.MakeLower();
-			outname += ext;
-		}
-		break;
+	{
+		CString ext = ext_in;
+		ext.MakeLower();
+		outname += ext;
+	}
+	break;
 	case 'E':
-		{
-			CString ext = ext_in;
-			ext.MakeUpper();
-			outname += ext;
-		}
-		break;
-/*	case 'f':
-		{
+	{
+		CString ext = ext_in;
+		ext.MakeUpper();
+		outname += ext;
+	}
+	break;
+	/*	case 'f':
+			{
 
-		}
-		break;*/
-	case 'k':	
-		outname += maker; 
+			}
+			break;*/
+	case 'k':
+		outname += maker;
 		break;
-	case 'l':	
-		outname += model; 
+	case 'l':
+		outname += model;
 		break;
 	case 'g':	// 平成 or 昭和
-		{
-			int y = t.GetYear();
-			int g = 0;
-			if (y >= 1989) {
-				g = y - 1989 + 1;
-			}
-			else if (y >= 1926) {
-				g = y - 1926 + 1;
-			}
-			str.Format("%02d", g); outname += str; 
+	{
+		int y = t.GetYear();
+		int g = 0;
+		if(y >= 1989) {
+			g = y - 1989 + 1;
 		}
-		break;
+		else if(y >= 1926) {
+			g = y - 1926 + 1;
+		}
+		str.Format("%02d", g); outname += str;
+	}
+	break;
 	case 'Y':	str.Format("%04d", t.GetYear()); outname += str; break;
 	case 'y':	str.Format("%02d", t.GetYear() % 100); outname += str; break;
 	case 'm':	str.Format("%02d", t.GetMonth()); outname += str; break;
@@ -317,17 +305,17 @@ static void extractC2Time(int c, CString &outname, CTime &t, const CString &text
 	case 'M':	str.Format("%02d", t.GetMinute()); outname += str; break;
 	case 'S':	str.Format("%02d", t.GetSecond()); outname += str; break;
 	case 'w':
-		{
-			char *weekstr[] = { "", "Sun","Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
-			outname += weekstr[t.GetDayOfWeek()];
-		}
-		break;
+	{
+		char* weekstr[] = { "", "Sun","Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
+		outname += weekstr[t.GetDayOfWeek()];
+	}
+	break;
 	case 'W':
-		{
-			char *weekstr[] = { "", "日","月", "火", "水", "木", "金", "土"};
-			outname += weekstr[t.GetDayOfWeek()];
-		}
-		break;
+	{
+		char* weekstr[] = { "", "日","月", "火", "水", "木", "金", "土" };
+		outname += weekstr[t.GetDayOfWeek()];
+	}
+	break;
 	case 'o':
 		outname += text;
 		break;
@@ -347,20 +335,18 @@ static void extractC2Time(int c, CString &outname, CTime &t, const CString &text
 
 
 // fileName から拡張子だけを返す
-static CString nykGetStrExt(const CString& fileName)
-{
+static CString nykGetStrExt(const CString& fileName) {
 	CString ret = "";
 	int c = fileName.ReverseFind('.');
-	if (c == -1) return ret;
-	ret = fileName.Mid(c+1);
+	if(c == -1) return ret;
+	ret = fileName.Mid(c + 1);
 	return ret;
 }
 
 // 大小文字変換 0=大文字 1=小文字 2=そのまま
-static CString nykExUpper(const CString &src, int sw_ex_upper)
-{
+static CString nykExUpper(const CString& src, int sw_ex_upper) {
 	CString ret = src;
-	switch (sw_ex_upper) {
+	switch(sw_ex_upper) {
 	case 0:
 		ret.MakeUpper();
 		break;
@@ -374,49 +360,48 @@ static CString nykExUpper(const CString &src, int sw_ex_upper)
 	return ret;
 }
 
-void makeDcimFileName(CString& outname, time_t t_in, const CString &naming_text, time_t t_now, 
-	 const CString &ext, const CString &original_name, const CString &maker, const CString &model, const CString &ext2,
-	 int counter_by_day)
-{
+void makeDcimFileName(CString& outname, time_t t_in, const CString& naming_text, time_t t_now,
+	const CString& ext, const CString& original_name, const CString& maker, const CString& model, const CString& ext2,
+	int counter_by_day) {
 	CTime t(t_in);
 	CTime now(t_now);
 
 	outname = "";
 	int i;
 
-	for (i = 0; i < naming_text.GetLength(); i++) {
+	for(i = 0; i < naming_text.GetLength(); i++) {
 		int c = naming_text.GetAt(i);
 
-		if (c == '%') {
-			if (i == naming_text.GetLength()-1) { // 最後の文字だったら
+		if(c == '%') {
+			if(i == naming_text.GetLength() - 1) { // 最後の文字だったら
 				break;
 			}
 			i++;
 			int c2 = naming_text.GetAt(i);
-			if (c2 == 'a') {
-				if (i == naming_text.GetLength()-1) { // 最後の文字だったら
+			if(c2 == 'a') {
+				if(i == naming_text.GetLength() - 1) { // 最後の文字だったら
 					break;
 				}
 				i++;
 				int c3 = naming_text.GetAt(i);
-				extractC2Time(c3, outname, now, "", maker,model, ext2, counter_by_day);
+				extractC2Time(c3, outname, now, "", maker, model, ext2, counter_by_day);
 			}
 			else {
-				extractC2Time(c2, outname, t, original_name, maker,model, ext2, counter_by_day);
+				extractC2Time(c2, outname, t, original_name, maker, model, ext2, counter_by_day);
 			}
 		}
 		else {
-			CString str((char)c, 1);
-//			TRACE("str=[%s] ", str);
+			CString str((char) c, 1);
+			//			TRACE("str=[%s] ", str);
 			outname += str;
-//			TRACE("out=[%s]\n", outname);
+			//			TRACE("out=[%s]\n", outname);
 		}
 	}
-	if (ext != "") {
+	if(ext != "") {
 		outname += ".";
 		outname += ext;
 	}
-	TRACE("makeDcimFileName: %s -> %s\n",naming_text, outname);
+	TRACE("makeDcimFileName: %s -> %s\n", naming_text, outname);
 }
 
 /*
@@ -432,9 +417,9 @@ static bool pr_dcim_name(const Dcim &a, const Dcim &b)	// 2007.6.11
 }
 */
 
-static bool pr_dcim_time2name(const Dcim &a, const Dcim &b)	// 2007.6.17
+static bool pr_dcim_time2name(const Dcim& a, const Dcim& b)	// 2007.6.17
 {
-	if (a.shotTime != b.shotTime) return a.shotTime < b.shotTime;
+	if(a.shotTime != b.shotTime) return a.shotTime < b.shotTime;
 	return a.orgName < b.orgName;
 }
 
@@ -454,21 +439,20 @@ void CDcimList::SortByName()
 }*/
 
 // ex_upper=0 拡張子を大文字 1 拡張子を小文字 2 拡張子そのまま
-void CDcimList::SetExifInfomation(const CString &naming_text, const CString &thumb_naming_text, const CString &naming_dir,
-								  const CString &thumb_naming_dir, const CString &naming_video_dir, void (*callback)(const CString&, int, int), int ex_upper,
-								  int counter_by_day)
-{
+void CDcimList::SetExifInfomation(const CString& naming_text, const CString& thumb_naming_text, const CString& naming_dir,
+	const CString& thumb_naming_dir, const CString& naming_video_dir, void (*callback)(const CString&, int, int), int ex_upper,
+	int counter_by_day) {
 	vector<CString> naming_dirs;
 	StringToArray(naming_dir, ",", naming_dirs);
-//	this->m_outDirs = naming_dirs.size();
-//	if (m_outDirs > NEW_DIR_EX_MAX) m_outDirs = NEW_DIR_EX_MAX;
+	//	this->m_outDirs = naming_dirs.size();
+	//	if (m_outDirs > NEW_DIR_EX_MAX) m_outDirs = NEW_DIR_EX_MAX;
 	int c_outDirs = naming_dirs.size();
-	if (c_outDirs > NEW_DIR_EX_MAX) c_outDirs = NEW_DIR_EX_MAX;
+	if(c_outDirs > NEW_DIR_EX_MAX) c_outDirs = NEW_DIR_EX_MAX;
 
 	vector<CString> naming_video_dirs;
 	StringToArray(naming_video_dir, ",", naming_video_dirs);
 	int c_outDirsVideo = naming_video_dirs.size();
-	if (c_outDirsVideo > NEW_DIR_EX_MAX) c_outDirsVideo = NEW_DIR_EX_MAX;
+	if(c_outDirsVideo > NEW_DIR_EX_MAX) c_outDirsVideo = NEW_DIR_EX_MAX;
 
 	m_outDirs = c_outDirs;
 	m_outDirsVideo = c_outDirsVideo;
@@ -478,25 +462,25 @@ void CDcimList::SetExifInfomation(const CString &naming_text, const CString &thu
 	TRACE("--- exif info ---\n");
 	vector<Dcim>::iterator j;
 	int count = 0;
-	int max = (int)dcim.size();
-	for (j = dcim.begin(); j != dcim.end(); j++) {
+	int max = (int) dcim.size();
+	for(j = dcim.begin(); j != dcim.end(); j++) {
 		//TRACE("* %s %s fs:%d t:%d\n", j->dir, j->orgName, j->filesize, j->fileTime);
-		
+
 		CString callback_text;
-		callback_text.Format("%d/%d (%1.0lf%%) %s", count, max, 100.0*(double)count/max, j->dir+j->orgName);
+		callback_text.Format("%d/%d (%1.0lf%%) %s", count, max, 100.0 * (double) count / max, j->dir + j->orgName);
 		callback(callback_text, count, max);
 		count++;
 
 		{
-			CPicmoveApp* app = (CPicmoveApp*)AfxGetApp();
-			if (app->requestStop) { return ; }
+			CPicmoveApp* app = (CPicmoveApp*) AfxGetApp();
+			if(app->requestStop) { return; }
 		}
 
-		if (j->fileFormat == NYK_FILE_JPG) {		
+		if(j->fileFormat == NYK_FILE_JPG) {
 			ExifInfo e;
 			int ret = e.loadExifFile(j->dir + j->orgName);
 			j->errCode = e.getErrCode();
-			if (ret) { // Exif 取得に成功した
+			if(ret) { // Exif 取得に成功した
 				j->height = e.getHeight();
 				j->width = e.getWidth();
 				j->orientation = e.getOrientation();
@@ -524,16 +508,16 @@ void CDcimList::SetExifInfomation(const CString &naming_text, const CString &thu
 			j->model = "_Model";
 			TRACE("EXIFERROR: NOJPEG ");
 		}
-		
+
 		CString orgNameBase;	// 拡張子だけはずす
 		int c = j->orgName.ReverseFind('.');
-		if (c != -1) orgNameBase = j->orgName.Left(c);
+		if(c != -1) orgNameBase = j->orgName.Left(c);
 		else orgNameBase = j->orgName;
-		
+
 		CString orgNameDir;		// ラストの\をはずす
-		if (j->dir.GetLength() != 0) {
-			if (j->dir.GetAt(j->dir.GetLength()-1) == '\\') {
-				orgNameDir = j->dir.Left(j->dir.GetLength()-2);
+		if(j->dir.GetLength() != 0) {
+			if(j->dir.GetAt(j->dir.GetLength() - 1) == '\\') {
+				orgNameDir = j->dir.Left(j->dir.GetLength() - 2);
 			}
 			else {
 				orgNameDir = j->dir;
@@ -543,106 +527,104 @@ void CDcimList::SetExifInfomation(const CString &naming_text, const CString &thu
 			orgNameDir = "";
 		}
 
-		makeDcimFileName(j->newName, j->shotTime, naming_text, now, nykExUpper(nykGetStrExt(j->orgName), ex_upper), orgNameBase, j->maker,j->model, nykExUpper(nykGetStrExt(j->orgName), ex_upper), counter_by_day);
-		makeDcimFileName(j->newThumbName, j->shotTime, thumb_naming_text, now, nykExUpper("JPG", ex_upper), orgNameBase, j->maker,j->model, nykExUpper("JPG", ex_upper), counter_by_day);
+		makeDcimFileName(j->newName, j->shotTime, naming_text, now, nykExUpper(nykGetStrExt(j->orgName), ex_upper), orgNameBase, j->maker, j->model, nykExUpper(nykGetStrExt(j->orgName), ex_upper), counter_by_day);
+		makeDcimFileName(j->newThumbName, j->shotTime, thumb_naming_text, now, nykExUpper("JPG", ex_upper), orgNameBase, j->maker, j->model, nykExUpper("JPG", ex_upper), counter_by_day);
 
-		if (j->fileFormat == NYK_FILE_OTHER_VIDEO) {
-			for (int i = 0; i < c_outDirsVideo; i++) {
-				makeDcimFileName(j->newDirEx[i], j->shotTime, naming_video_dirs[i], now, "", j->dir, j->maker,j->model, nykExUpper(nykGetStrExt(j->orgName), ex_upper), counter_by_day);
-				if (i == 0) j->newDir = j->newDirEx[i];
+		if(j->fileFormat == NYK_FILE_OTHER_VIDEO) {
+			for(int i = 0; i < c_outDirsVideo; i++) {
+				makeDcimFileName(j->newDirEx[i], j->shotTime, naming_video_dirs[i], now, "", j->dir, j->maker, j->model, nykExUpper(nykGetStrExt(j->orgName), ex_upper), counter_by_day);
+				if(i == 0) j->newDir = j->newDirEx[i];
 			}
 		}
 		else {
-			for (int i = 0; i < c_outDirs; i++) {
-				makeDcimFileName(j->newDirEx[i], j->shotTime, naming_dirs[i], now, "", j->dir, j->maker,j->model, nykExUpper(nykGetStrExt(j->orgName), ex_upper), counter_by_day);
-				if (i == 0) j->newDir = j->newDirEx[i];
+			for(int i = 0; i < c_outDirs; i++) {
+				makeDcimFileName(j->newDirEx[i], j->shotTime, naming_dirs[i], now, "", j->dir, j->maker, j->model, nykExUpper(nykGetStrExt(j->orgName), ex_upper), counter_by_day);
+				if(i == 0) j->newDir = j->newDirEx[i];
 			}
 		}
 
-		makeDcimFileName(j->newThumbDir, j->shotTime, thumb_naming_dir, now, "", j->dir, j->maker,j->model, nykExUpper(nykGetStrExt(j->orgName), ex_upper), counter_by_day);
+		makeDcimFileName(j->newThumbDir, j->shotTime, thumb_naming_dir, now, "", j->dir, j->maker, j->model, nykExUpper(nykGetStrExt(j->orgName), ex_upper), counter_by_day);
 		TRACE("** %s %s %s -> %s %s\n", j->model, j->dir, j->orgName, j->newDir, j->newName);
 	}
-//	sort(dcim.begin(), dcim.end(), pr_dcim);
-//	sort(dcim.begin(), dcim.end(), pr_dcim_name);
-/*	sort(dcim.begin(), dcim.end(), pr_dcim_name);
+	//	sort(dcim.begin(), dcim.end(), pr_dcim);
+	//	sort(dcim.begin(), dcim.end(), pr_dcim_name);
+	/*	sort(dcim.begin(), dcim.end(), pr_dcim_name);
 
-	TRACE("-- SORTED2 ---\n");
-	for (j = dcim.begin(); j != dcim.end(); j++) {
-		TRACE("S2 %s %s fs:%d t:%d st:%d\n", j->dir, j->orgName, j->filesize, j->fileTime, j->shotTime);
-	}
+		TRACE("-- SORTED2 ---\n");
+		for (j = dcim.begin(); j != dcim.end(); j++) {
+			TRACE("S2 %s %s fs:%d t:%d st:%d\n", j->dir, j->orgName, j->filesize, j->fileTime, j->shotTime);
+		}
 
-	sort(dcim.begin(), dcim.end(), pr_dcim);
+		sort(dcim.begin(), dcim.end(), pr_dcim);
 
-	TRACE("-- SORTED3 ---\n");
-	for (j = dcim.begin(); j != dcim.end(); j++) {
-		TRACE("S3 %s %s fs:%d t:%d st:%d\n", j->dir, j->orgName, j->filesize, j->fileTime, j->shotTime);
-	}*/
+		TRACE("-- SORTED3 ---\n");
+		for (j = dcim.begin(); j != dcim.end(); j++) {
+			TRACE("S3 %s %s fs:%d t:%d st:%d\n", j->dir, j->orgName, j->filesize, j->fileTime, j->shotTime);
+		}*/
 
 	sort(dcim.begin(), dcim.end(), pr_dcim_time2name);
 
 }
 
 // ,区切り拡張子文字列のエラーチェックをする 何もないときは JPG 追加する
-void nykRegularExtensions(CString &extensions_in)
-{
+void nykRegularExtensions(CString& extensions_in) {
 	CString out;
 
 	extensions_in.Remove(' ');
 
-	if (extensions_in.GetLength() == 0) { extensions_in = "JPG"; return; }
+	if(extensions_in.GetLength() == 0) { extensions_in = "JPG"; return; }
 	vector<CString> ret;
 	StringToArray(extensions_in, ",", ret);
-	if (ret.size() == 0) { extensions_in = "JPG"; return; }
+	if(ret.size() == 0) { extensions_in = "JPG"; return; }
 
 	out = "";
 	vector<CString>::iterator i;
-	for (i = ret.begin(); i != ret.end(); i++) {
+	for(i = ret.begin(); i != ret.end(); i++) {
 		TRACE("[%s]%d", *i, i->GetLength());
-		if (i->GetLength() == 0) continue;
-		if (i->Find("?") != -1) continue; // ワイルドカードはつかえない
-		if (i->Find("*") != -1) continue; // ワイルドカードはつかえない
+		if(i->GetLength() == 0) continue;
+		if(i->Find("?") != -1) continue; // ワイルドカードはつかえない
+		if(i->Find("*") != -1) continue; // ワイルドカードはつかえない
 		i->TrimLeft();
 		i->TrimRight();
 		out += *i;
 		out += ",";
 	}
 	TRACE("\n");
-	if (out.GetLength() == 0) { extensions_in = "JPG"; return; }
-	if (out.GetAt(out.GetLength()-1) == ',') {
-		CString tmp = out.Left(out.GetLength() -1);
+	if(out.GetLength() == 0) { extensions_in = "JPG"; return; }
+	if(out.GetAt(out.GetLength() - 1) == ',') {
+		CString tmp = out.Left(out.GetLength() - 1);
 		out = tmp;
 	}
 	extensions_in = out;
 	extensions_in.MakeUpper();
 }
 
-void nykRegularExtensionsVideo(CString &extensions_in)
-{
+void nykRegularExtensionsVideo(CString& extensions_in) {
 	CString out;
 
 	extensions_in.Remove(' ');
 
-	if (extensions_in.GetLength() == 0) {  return; }
+	if(extensions_in.GetLength() == 0) { return; }
 	vector<CString> ret;
 	StringToArray(extensions_in, ",", ret);
-	if (ret.size() == 0) { extensions_in = ""; return; }
+	if(ret.size() == 0) { extensions_in = ""; return; }
 
 	out = "";
 	vector<CString>::iterator i;
-	for (i = ret.begin(); i != ret.end(); i++) {
+	for(i = ret.begin(); i != ret.end(); i++) {
 		TRACE("[%s]%d", *i, i->GetLength());
-		if (i->GetLength() == 0) continue;
-		if (i->Find("?") != -1) continue; // ワイルドカードはつかえない
-		if (i->Find("*") != -1) continue; // ワイルドカードはつかえない
+		if(i->GetLength() == 0) continue;
+		if(i->Find("?") != -1) continue; // ワイルドカードはつかえない
+		if(i->Find("*") != -1) continue; // ワイルドカードはつかえない
 		i->TrimLeft();
 		i->TrimRight();
 		out += *i;
 		out += ",";
 	}
 	TRACE("\n");
-	if (out.GetLength() == 0) { extensions_in = ""; return; }
-	if (out.GetAt(out.GetLength()-1) == ',') {
-		CString tmp = out.Left(out.GetLength() -1);
+	if(out.GetLength() == 0) { extensions_in = ""; return; }
+	if(out.GetAt(out.GetLength() - 1) == ',') {
+		CString tmp = out.Left(out.GetLength() - 1);
 		out = tmp;
 	}
 	extensions_in = out;
@@ -651,14 +633,12 @@ void nykRegularExtensionsVideo(CString &extensions_in)
 
 
 // 対象となる拡張子をセットする
-void CDcimList::SetExtensions(const CString &extensions_in)
-{
+void CDcimList::SetExtensions(const CString& extensions_in) {
 	extensions = extensions_in;
 	nykRegularExtensions(extensions);
 }
 
-void CDcimList::SetExtensionsVideo(const CString &extensions_in)
-{
+void CDcimList::SetExtensionsVideo(const CString& extensions_in) {
 	extensions_video = extensions_in;
 	nykRegularExtensionsVideo(extensions_video);
 }

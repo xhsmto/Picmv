@@ -10,14 +10,13 @@
 /////////////////////////////////////////////////////////////////////////////
 // CNamigRulesDlg ダイアログ
 
-class CNamigRulesDlg : public CDialog
-{
-// コンストラクション
+class CNamigRulesDlg : public CDialog {
+	// コンストラクション
 public:
 	CNamigRulesDlg(CWnd* pParent = NULL);   // 標準のコンストラクタ
 
-// ダイアログ データ
-	//{{AFX_DATA(CNamigRulesDlg)
+	// ダイアログ データ
+		//{{AFX_DATA(CNamigRulesDlg)
 	enum { IDD = IDD_DIALOG_NAMING_RULES };
 	//}}AFX_DATA
 
@@ -25,7 +24,7 @@ public:
 // オーバーライド
 	// ClassWizard は仮想関数のオーバーライドを生成します。
 	//{{AFX_VIRTUAL(CNamigRulesDlg)
-	protected:
+protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV サポート
 	//}}AFX_VIRTUAL
 
@@ -39,7 +38,7 @@ protected:
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 public:
-	void SetHelpText(const CString &text_in);
+	void SetHelpText(const CString& text_in);
 };
 
 //{{AFX_INSERT_LOCATION}}

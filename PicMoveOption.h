@@ -10,14 +10,13 @@
 /////////////////////////////////////////////////////////////////////////////
 // CPicMoveOption ダイアログ
 
-class CPicMoveOption : public CDialog
-{
-// コンストラクション
+class CPicMoveOption : public CDialog {
+	// コンストラクション
 public:
 	CPicMoveOption(CWnd* pParent = NULL);   // 標準のコンストラクタ
 
-// ダイアログ データ
-	//{{AFX_DATA(CPicMoveOption)
+	// ダイアログ データ
+		//{{AFX_DATA(CPicMoveOption)
 	enum { IDD = IDD_PICMOVEOPTION_DIALOG };
 	int		m_detect_time;
 	BOOL	m_bilinear;
@@ -42,7 +41,7 @@ public:
 // オーバーライド
 	// ClassWizard は仮想関数のオーバーライドを生成します。
 	//{{AFX_VIRTUAL(CPicMoveOption)
-	protected:
+protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV サポート
 	//}}AFX_VIRTUAL
 

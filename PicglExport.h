@@ -18,12 +18,12 @@ private:
 	CString base_dir_name;
 	CString exp_file_name;
 public:
-	CPicglExport(const CString &dir_in, const CString &mode);
+	CPicglExport(const CString& dir_in, const CString& mode);
 	virtual ~CPicglExport();
-	
+
 	void Clear(void);
-	void Add(const CString &fullpath_in);
-	bool Get(int idx, CString &fullpath_out);
+	void Add(const CString& fullpath_in);
+	bool Get(int idx, CString& fullpath_out);
 	int GetNumber(void);
 	bool Save(void);
 	bool Load(void);

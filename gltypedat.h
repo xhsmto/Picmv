@@ -1,7 +1,7 @@
 #pragma once
 
 typedef struct nykGLPoint_t {
-	double x,y,z,nx,ny,nz;
+	double x, y, z, nx, ny, nz;
 } nykGLPoint;
 
 typedef short nykGLPolyIndex;

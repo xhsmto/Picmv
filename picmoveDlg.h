@@ -29,11 +29,10 @@ enum {
 /////////////////////////////////////////////////////////////////////////////
 // CPicmoveDlg ダイアログ
 
-class CPicmoveDlg : public CDialog
-{
+class CPicmoveDlg : public CDialog {
 private:
 
-// ダイアログのデータ
+	// ダイアログのデータ
 	CString indir, outdir, thumbdir, video_dir;
 	CString naming, thumbnaming;
 	int b_thumb, b_deleteok, b_autocontrast, b_orientation, b_eject, b_autoquit;
@@ -44,66 +43,66 @@ private:
 	CString auto_indir;
 	int b_auto_detect, b_manual_detect; //IDC_RADIO_AUTO_DETECT
 	int b_add_serial, b_nocopy, b_overwrite;
-	int b_confirm; 
+	int b_confirm;
 	// add 2008.7.10 
 	int b_auto_start;
 	int b_video_dir;
 	int m_counter_byday, m_counter_odd, m_counter_exec;
 	time_t m_last_exec;
-// 詳細オプション
+	// 詳細オプション
 	int m_detect_time;
 	int m_bilinear;
-	int m_gl_time ;
-	int m_jpeg_q ;
+	int m_gl_time;
+	int m_jpeg_q;
 	int m_picbar_time;
 	int m_thumb_jpeg_q;
 	int m_ex_upper;	// 0=小文字 1=大文字 2=そのまま
 	int m_SMARTREPLACE;
 	int m_ALWAYSSN;
-//	int m_speed;
+	//	int m_speed;
 	CString m_extensions;
 	CString m_extensions_video;
 	CString m_serialChar;
 	int m_serialColumn;
 	int m_glPicture;
-// Picgl 関係
+	// Picgl 関係
 	int m_CHECK_PICGL_SUPPORT;
 	CString m_EDIT_PICGL_DIR;
 
 	int m_CHECK_OTHERTHANDCIM;
 
 
-//	bool force_inhibit_auto_detect;
-// ダイアログのデータここまで
-// いまコピーしているかどうか
+	//	bool force_inhibit_auto_detect;
+	// ダイアログのデータここまで
+	// いまコピーしているかどうか
 	bool nowCoping;
 	CDcimList DcimList;
-// プログレス用
+	// プログレス用
 	CBitmap prg_bitmap;
-	CBitmap *old_prg_bitmap;
+	CBitmap* old_prg_bitmap;
 	CDC prg_memdc;
 	CBitmap prgbar_bitmap;
-	CBitmap *old_prgbar_bitmap;
+	CBitmap* old_prgbar_bitmap;
 	CDC prgbar_memdc;
 	double prgbar_percent, prgbar_local;
 	int prgbarCounter;
 
-// デジタル用
+	// デジタル用
 	int digital_counter;
 	// 0=remain 1=percent 2=normal
 	int digital_mode;
 	CBitmap digital_bitmap;
-	CBitmap *old_digital_bitmap;
+	CBitmap* old_digital_bitmap;
 	CDC digital_memdc;
-// デジタルソース用
+	// デジタルソース用
 	CBitmap digital_rsrc;
 	CDC digital_rsrc_memdc;
-	CBitmap *old_digital_rsrc;
+	CBitmap* old_digital_rsrc;
 
-// GL用
+	// GL用
 
 	CglType gl;
-// popup用
+	// popup用
 	int popup_height;
 
 	// ドラッグアンドドロップ用
@@ -133,19 +132,19 @@ public:
 	void saveIniFileForExit(void);
 	void loadIniFile(void);
 	void setDialogParamAutoInDirOnly(void);
-	bool mediaDetected(CString &media);
+	bool mediaDetected(CString& media);
 	bool autoStart(void);
 	void updateGrayEjectButton(void);
-	static void theThread(void *ptr);
-	static void glThread(void *ptr);
-	static void stopTheThread(void *ptr);
+	static void theThread(void* ptr);
+	static void glThread(void* ptr);
+	static void stopTheThread(void* ptr);
 	void updateGrayButtons(void);
 	void prgPaint(void);
 	void prgbarPaint(void);	// paintはmemdcから実際に転送する
 	void prgbarDraw(void);	// drawはmemdcに書き込む
 	void digitalPaint(void);
-// ダイアログ データ
-	//{{AFX_DATA(CPicmoveDlg)
+	// ダイアログ データ
+		//{{AFX_DATA(CPicmoveDlg)
 	enum { IDD = IDD_PICMOVE_DIALOG };
 	CComboBox	m_COMBO_THUMBNAIL;
 	CStatic	m_STATIC_THUMB_COLOR;
@@ -160,9 +159,9 @@ public:
 
 	// ClassWizard は仮想関数のオーバーライドを生成します。
 	//{{AFX_VIRTUAL(CPicmoveDlg)
-	public:
+public:
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
-	protected:
+protected:
 	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV のサポート
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 	virtual void PostNcDestroy();
@@ -218,11 +217,11 @@ protected:
 	DECLARE_MESSAGE_MAP()
 private:
 	bool DoParseCommandLine();
-// ツールチップ関係
+	// ツールチップ関係
 private:
 	CToolTipCtrl NamingRuleTip;
 private:
-	void nykGetDcimDirs(CString &dir);
+	void nykGetDcimDirs(CString& dir);
 	void AddNotifyIcon();
 	HWND m_hWndCopy;
 	CMenu m_menuRightClickTrayIcon;

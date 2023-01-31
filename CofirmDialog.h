@@ -11,14 +11,13 @@
 /////////////////////////////////////////////////////////////////////////////
 // CCofirmDialog ダイアログ
 
-class CCofirmDialog : public CDialog
-{
-// コンストラクション
+class CCofirmDialog : public CDialog {
+	// コンストラクション
 public:
 	CCofirmDialog(CWnd* pParent = NULL);   // 標準のコンストラクタ
 
-// ダイアログ データ
-	//{{AFX_DATA(CCofirmDialog)
+	// ダイアログ データ
+		//{{AFX_DATA(CCofirmDialog)
 	enum { IDD = IDD_COFIRMDIALOG_DIALOG };
 	CListCtrl	m_listConfirm;
 	CStatic	m_confirmArea;
@@ -28,7 +27,7 @@ public:
 // オーバーライド
 	// ClassWizard は仮想関数のオーバーライドを生成します。
 	//{{AFX_VIRTUAL(CCofirmDialog)
-	protected:
+protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV サポート
 	//}}AFX_VIRTUAL
 
@@ -46,15 +45,15 @@ protected:
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 public:
-	void SetData( CDcimList &dcimList_in);
+	void SetData(CDcimList& dcimList_in);
 	// 0=cancel 1=ok -1=idle
 	inline int GetResult(void) { return result; }
 	inline void SetResult(int result_in) { result = result_in; }
 private:
-//	CString text;
+	//	CString text;
 	int result;
 	CBitmap confirmArea_bitmap;
-	CBitmap *old_confirmArea_bitmap;
+	CBitmap* old_confirmArea_bitmap;
 	CDC confirmArea_memdc;
 	CDcimList dcimList;
 	void drawConfirmArea(void);

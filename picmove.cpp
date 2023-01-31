@@ -24,13 +24,10 @@ BEGIN_MESSAGE_MAP(CPicmoveApp, CWinApp)
 END_MESSAGE_MAP()
 
 
-
-
 /////////////////////////////////////////////////////////////////////////////
 // CPicmoveApp クラスの構築
 
-CPicmoveApp::CPicmoveApp()
-{
+CPicmoveApp::CPicmoveApp() {
 	// TODO: この位置に構築用のコードを追加してください。
 	// ここに InitInstance 中の重要な初期化処理をすべて記述してください。
 	requestStop = false;
@@ -99,8 +96,7 @@ CString NYK_STRINGS147;
 CString NYK_STRINGS148;
 CString NYK_STRINGS149;
 
-bool CPicmoveApp::LoadMyStrings(void)
-{
+bool CPicmoveApp::LoadMyStrings(void) {
 	NYK_STRINGS102.LoadString(IDS_STRING102);
 	NYK_STRINGS103.LoadString(IDS_STRING103);
 	NYK_STRINGS104.LoadString(IDS_STRING104);
@@ -155,33 +151,31 @@ bool CPicmoveApp::LoadMyStrings(void)
 	return true;
 }
 
-void GetAppDir(CString &dirOut)
-{
-   char dir[MAX_PATH];
-    ::GetModuleFileName(NULL, dir, MAX_PATH);  // 実行ファイルのパスを取得
-    char* pdest = strrchr(dir, '\\');          // 実行ファイルのパスから SJIS 表問題!
-    if (pdest != NULL)	pdest[1] = '\0';       // 実行ファイル名だけ切り取る
-    dirOut = dir;
+void GetAppDir(CString& dirOut) {
+	char dir[MAX_PATH];
+	::GetModuleFileName(NULL, dir, MAX_PATH);  // 実行ファイルのパスを取得
+	char* pdest = strrchr(dir, '\\');          // 実行ファイルのパスから SJIS 表問題!
+	if(pdest != NULL)	pdest[1] = '\0';       // 実行ファイル名だけ切り取る
+	dirOut = dir;
 }
 
-bool CPicmoveApp::LoadLanguageDll(const CString &dllName_in)
-{
+bool CPicmoveApp::LoadLanguageDll(const CString& dllName_in) {
 	bool ret = true;
-//	this->lang = 0;
+	//	this->lang = 0;
 	{
 		CString baseDir, dllName;
 		::GetAppDir(baseDir);
 		dllName = baseDir + dllName_in; //"picmove_en.dll";
-		if (::GetFileAttributes(dllName) != -1) {
+		if(::GetFileAttributes(dllName) != -1) {
 			HINSTANCE returnHandle = ::LoadLibrary(dllName);
-			if (returnHandle) {
+			if(returnHandle) {
 				AfxSetResourceHandle(returnHandle);
-//				this->lang = 1;
+				//				this->lang = 1;
 				ret = true;
 			}
 		}
 		else {
-			ret =false;
+			ret = false;
 		}
 	}
 	LoadMyStrings();
@@ -189,8 +183,7 @@ bool CPicmoveApp::LoadLanguageDll(const CString &dllName_in)
 }
 
 
-BOOL CPicmoveApp::InitInstance()
-{
+BOOL CPicmoveApp::InitInstance() {
 
 	// 標準的な初期化処理
 	// もしこれらの機能を使用せず、実行ファイルのサイズを小さくしたけ
@@ -205,33 +198,33 @@ BOOL CPicmoveApp::InitInstance()
 
 	loadIniFile();
 
-	if (bMiniSize) {
+	if(bMiniSize) {
 		bool ret = LoadLanguageDll("picmove_jp_small.dll");
-		if (!ret) LoadLanguageDll("picmove_en_small.dll");
+		if(!ret) LoadLanguageDll("picmove_en_small.dll");
 	}
 	else {
 		LoadLanguageDll("picmove_en.dll");
 	}
 
-    hMSP = CreateMutex(NULL, TRUE, "picmove_picmove");
-    // すでに起動しているか判定
-    if(GetLastError() == ERROR_ALREADY_EXISTS){        // すでに起動している。        
-//		MessageBox(NULL, NYK_STRINGS102 /*"すでに Picmv は起動しております。" */, "Picmv", MB_OK);
-        ReleaseMutex(hMSP);
-        CloseHandle(hMSP);
+	hMSP = CreateMutex(NULL, TRUE, "picmove_picmove");
+	// すでに起動しているか判定
+	if(GetLastError() == ERROR_ALREADY_EXISTS) {        // すでに起動している。        
+		//		MessageBox(NULL, NYK_STRINGS102 /*"すでに Picmv は起動しております。" */, "Picmv", MB_OK);
+		ReleaseMutex(hMSP);
+		CloseHandle(hMSP);
 
 		HWND h;
 		h = ::FindWindow(NULL, "Picmv");
-        if(h) {
-//            pWnd->IsIconic() ? pWnd->ShowWindow(SW_SHOWNORMAL) : pWnd->BringWindowToTop();
+		if(h) {
+			//            pWnd->IsIconic() ? pWnd->ShowWindow(SW_SHOWNORMAL) : pWnd->BringWindowToTop();
 			::ShowWindow(h, SW_SHOWNORMAL);
-//			::BringWindowToTop(h);
+			//			::BringWindowToTop(h);
 			SetForegroundWindow(h);
-//			::MessageBox(NULL, "AAA", "AAA", MB_OK);
-            return FALSE;
-        }
-        return FALSE;   
-    }
+			//			::MessageBox(NULL, "AAA", "AAA", MB_OK);
+			return FALSE;
+		}
+		return FALSE;
+	}
 
 #ifdef _AFXDLL
 	Enable3dControls();			// 共有 DLL 内で MFC を使う場合はここをコールしてください。
@@ -239,7 +232,7 @@ BOOL CPicmoveApp::InitInstance()
 	Enable3dControlsStatic();	// MFC と静的にリンクする場合はここをコールしてください。
 #endif
 
-	
+
 
 
 	CPicmoveDlg dlg;
@@ -248,23 +241,21 @@ BOOL CPicmoveApp::InitInstance()
 	TRACE("Dialog start\n");
 
 	int nResponse = dlg.DoModal();
-	TRACE ("response %d\n", nResponse);
-	if (nResponse == IDOK)
-	{
+	TRACE("response %d\n", nResponse);
+	if(nResponse == IDOK) {
 		// TODO: ダイアログが <OK> で消された時のコードを
 		//       記述してください。
 //CClientDC
 	}
-	else if (nResponse == IDCANCEL)
-	{
+	else if(nResponse == IDCANCEL) {
 		// TODO: ダイアログが <ｷｬﾝｾﾙ> で消された時のコードを
 		//       記述してください。
 	}
 
 
 
-	ReleaseMutex( hMSP );    
-	CloseHandle( hMSP );    
+	ReleaseMutex(hMSP);
+	CloseHandle(hMSP);
 
 	// ダイアログが閉じられてからアプリケーションのメッセージ ポンプを開始するよりは、
 	// アプリケーションを終了するために FALSE を返してください。
@@ -273,18 +264,16 @@ BOOL CPicmoveApp::InitInstance()
 	return FALSE;
 }
 
-void CPicmoveApp::saveIniFile(void)
-{
+void CPicmoveApp::saveIniFile(void) {
 	CWinApp* pApp = AfxGetApp();
 	CString section = "ProgramData2";
-	
-	pApp->WriteProfileInt(section,		"bMiniSize", bMiniSize);
+
+	pApp->WriteProfileInt(section, "bMiniSize", bMiniSize);
 }
 
-void CPicmoveApp::loadIniFile(void)
-{
+void CPicmoveApp::loadIniFile(void) {
 	CWinApp* pApp = AfxGetApp();
 	CString section = "ProgramData2";
 
-	bMiniSize =	pApp->GetProfileInt(section,	"bMiniSize", 0);
+	bMiniSize = pApp->GetProfileInt(section, "bMiniSize", 0);
 }

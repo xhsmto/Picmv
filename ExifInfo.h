@@ -12,17 +12,16 @@
 
 #include <time.h>
 
-class ExifInfo  
-{
+class ExifInfo {
 private:
 	time_t shotTime;
 	int orientation;
 	int width, height;
-//	int fileSize;
+	//	int fileSize;
 	int errCode;
 	bool swMotorola;
-	int read2(unsigned char *buf);
-	long read4(unsigned char *buf);
+	int read2(unsigned char* buf);
+	long read4(unsigned char* buf);
 public:
 	ExifInfo();
 	virtual ~ExifInfo();
@@ -33,7 +32,7 @@ public:
 	inline int getOrientation(void) { return orientation; }
 	inline int getWidth(void) { return width; }
 	inline int getHeight(void) { return height; }
-//	inline int getFileSize(void) { return fileSize; }
+	//	inline int getFileSize(void) { return fileSize; }
 	inline int getErrCode(void) { return errCode; }
 	CString maker;
 	CString model;
@@ -52,7 +51,7 @@ public:
 	CString model;
 	int orientation;
 	time_t shotTime;
-	bool Get(const CString &fullpath, bool bForce = false);
+	bool Get(const CString& fullpath, bool bForce = false);
 	CString fullpath;
 };
 #endif

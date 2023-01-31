@@ -12,12 +12,12 @@
 
 class CWsDlg : public CDialog
 {
-// コンストラクション
+	// コンストラクション
 public:
 	CWsDlg(CWnd* pParent = NULL);   // 標準のコンストラクタ
 
-// ダイアログ データ
-	//{{AFX_DATA(CWsDlg)
+	// ダイアログ データ
+		//{{AFX_DATA(CWsDlg)
 	enum { IDD = IDD_DIALOG_WIDOWSIZE };
 	BOOL	m_CHECK_SMALLWINDOW;
 	//}}AFX_DATA
@@ -26,7 +26,7 @@ public:
 // オーバーライド
 	// ClassWizard は仮想関数のオーバーライドを生成します。
 	//{{AFX_VIRTUAL(CWsDlg)
-	protected:
+protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV サポート
 	//}}AFX_VIRTUAL
 

@@ -20,24 +20,22 @@ public:
 	bool fMount;
 	bool fDcim;
 	int type;
-//	long mediaSize, remainSize;
-
+	//	long mediaSize, remainSize;
 };
 
-class CNykDrive  
-{
+class CNykDrive {
 private:
 	vector<driveElement> drives_local;
 public:
 	CNykDrive();
 	virtual ~CNykDrive();
-	
-// リムーバルドライブのみをオブジェクトに格納する
+
+	// リムーバルドライブのみをオブジェクトに格納する
 	bool setDriveInfoRemovableOnly(void);
-// ドライブ数を取得する
+	// ドライブ数を取得する
 	int getNumberDrive(void);
-// ドライブ情報を取得する
-	bool getDriveInfo(int index, driveElement *element_in);
+	// ドライブ情報を取得する
+	bool getDriveInfo(int index, driveElement* element_in);
 };
 
 #endif // !defined(AFX_NYKDRIVE_H__6178AB81_28D4_4932_A9E1_85BD605CBF99__INCLUDED_)

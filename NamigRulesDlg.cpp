@@ -16,15 +16,13 @@ static char THIS_FILE[] = __FILE__;
 
 
 CNamigRulesDlg::CNamigRulesDlg(CWnd* pParent /*=NULL*/)
-	: CDialog(CNamigRulesDlg::IDD, pParent)
-{
+	: CDialog(CNamigRulesDlg::IDD, pParent) {
 	//{{AFX_DATA_INIT(CNamigRulesDlg)
 	//}}AFX_DATA_INIT
 }
 
 
-void CNamigRulesDlg::DoDataExchange(CDataExchange* pDX)
-{
+void CNamigRulesDlg::DoDataExchange(CDataExchange* pDX) {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CNamigRulesDlg)
 	//}}AFX_DATA_MAP
@@ -41,24 +39,21 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CNamigRulesDlg メッセージ ハンドラ
 
-void CNamigRulesDlg::SetHelpText(const CString &text_in)
-{
+void CNamigRulesDlg::SetHelpText(const CString& text_in) {
 	this->SetDlgItemText(IDC_EDIT_NAMING_RULES, text_in);
 	InvalidateRect(NULL, false);
 	UpdateWindow();
-}	
-
-void CNamigRulesDlg::OnDestroy() 
-{
-	CDialog::OnDestroy();
-	
-	// TODO: この位置にメッセージ ハンドラ用のコードを追加してください
-//	AfxMessageBox("Destroy");
-	
 }
 
-void CNamigRulesDlg::OnClose() 
-{
+void CNamigRulesDlg::OnDestroy() {
+	CDialog::OnDestroy();
+
+	// TODO: この位置にメッセージ ハンドラ用のコードを追加してください
+//	AfxMessageBox("Destroy");
+
+}
+
+void CNamigRulesDlg::OnClose() {
 	// TODO: この位置にメッセージ ハンドラ用のコードを追加するかまたはデフォルトの処理を呼び出してください
 //	AfxMessageBox("Close");
 //	CDialog::OnClose();
